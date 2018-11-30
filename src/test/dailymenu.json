@@ -1,0 +1,43 @@
+{
+  "daily_menus": [
+    {
+      "daily_menu": {
+        "daily_menu_id": "20077496",
+        "start_date": "2018-11-24 00:00:00",
+        "end_date": "2018-11-24 23:59:59",
+        "name": "",
+        "dishes": [
+          {
+            "dish": {
+              "dish_id": "685596720",
+              "name": "Velký zeleninový salát s grilovaným kozím sýrem a rajčatovým pestem, bylinkový dresink ,opečená bagetka",
+              "price": "158 Kč"
+            }
+          },
+          {
+            "dish": {
+              "dish_id": "685596721",
+              "name": "Čepované nealkoholické pivo \" Dudák\" 0,3l",
+              "price": "23 Kč"
+            }
+          },
+          {
+            "dish": {
+              "dish_id": "685596722",
+              "name": "Nealkoholický vinný nápoj 0,3l",
+              "price": "24 Kč"
+            }
+          },
+          {
+            "dish": {
+              "dish_id": "685596723",
+              "name": "Domácí limonády - malinová, okurková, bezinková, citronáda",
+              "price": "35 Kč"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "status": "success"
+}
