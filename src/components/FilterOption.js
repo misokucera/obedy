@@ -10,7 +10,9 @@ class FilterOption extends Component {
         }
 
         return (
-            <p className={classes.join(' ')} onClick={() => this.props.onChange(this.props.id)}>{this.props.name}</p>
+            <p className={classes.join(' ')} onClick={() => this.props.onChange(this.props.id)}>
+                <span>{this.props.name}</span>
+            </p>
         );
     }
 }

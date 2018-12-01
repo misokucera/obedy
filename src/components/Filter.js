@@ -18,6 +18,7 @@ class Filter extends Component {
 
         return (
             <div className={styles['filter']}>
+                <h2>Reštaurácie</h2>
                 {options}
             </div>
         );
