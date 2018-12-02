@@ -1,6 +1,43 @@
 .filter {
-    background: #eeeeee;
-    border-right: 1px solid #bbbbbb;
+    background: #333333;
+    color: #ffffff;
     padding: 1rem;
-    width: 15rem;
+    width: 100%;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+}
+
+.filter h2 {
+    margin-top: 0;
+}
+
+.filter.is-collapsed .content {
+    display: none;
+}
+
+.collapse-button {
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.collapse-button:hover {
+    opacity: 0.8;
+}
+
+@media screen and (min-width: 768px) {
+    .filter {
+        width: 15rem
+    }
+
+    .filter .collapse-button {
+        display: none;
+    }
+
+    .filter.is-collapsed .content {
+        display: block;
+    }
 }

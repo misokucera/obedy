@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Restaurant from "./Restaurant";
+import styles from "./RestaurantList.module.css";
 
 class RestaurantList extends Component {
     render() {
@@ -8,7 +9,9 @@ class RestaurantList extends Component {
             .map(restaurant => <Restaurant key={restaurant.id} name={restaurant.name} dailyMenus={restaurant.dailyMenus}/>);
 
         return (
-            <div> {restaurants} </div>
+            <div className={styles['list']}>
+                {restaurants}
+             </div>
         );
     }
 }
