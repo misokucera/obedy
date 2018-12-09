@@ -1,7 +1,8 @@
 [
-  { "id": "16506745", "order": 0, "name": "KOVO (B+B Food)" },
-  { "id": "16506973", "order": 1, "name": "Restaurant Hamburg" },
-  { "id": "16506974", "order": 2, "name": "Pět peněz" },
-  { "id": "16510994", "order": 3, "name": "Avion 58" },
-  { "id": "16507232", "order": 4, "name": "Restaurant PORT58" }
+  { "id": "16506745", "source": "zomato", "order": 0, "name": "KOVO (B+B Food)" },
+  { "id": "16506973", "source": "zomato", "order": 1, "name": "Restaurant Hamburg" },
+  { "id": "16506974", "source": "zomato", "order": 2, "name": "Pět peněz" },
+  { "id": "16510994", "source": "zomato", "order": 3, "name": "Avion 58" },
+  { "id": "16507232", "source": "zomato", "order": 4, "name": "Restaurant PORT58" },
+  { "id": "16506954", "source": "zomato", "order": 4, "name": "Holešovická Kozlovna" }
 ]
