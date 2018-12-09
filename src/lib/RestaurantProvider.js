@@ -6,7 +6,7 @@ const cacheInterval = 5 * 60 *1000;
 class RestaurantProvider {
     static getDailyMenu(restaurantId, source) {
         return FirebaseApi.loadRestaurant(restaurantId).then(value => {
-            if (value && value.updatedTime < Date.now() - cacheInterval) {
+            if (!value || value.updatedTime < Date.now() - cacheInterval) {
                 if (source === 'zomato') {
                     return ZomatoApi.getDailyMenu(restaurantId)
                         .then(data => {
