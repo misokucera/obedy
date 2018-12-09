@@ -3,28 +3,46 @@ import RestaurantList from "./components/RestaurantList";
 import Filter from "./components/Filter";
 import styles from "./App.module.css";
 import restaurants from "./restaurants"
-import ZomatoDailyMenuProvider from "./lib/ZomatoDalyMenuProvider";
+import RestaurantProvider from "./lib/RestaurantProvider";
 
 const storageSelectionKey = 'selected';
 
 class App extends Component {
+
     state = {
-        restaurants: []
+        restaurants: restaurants || []
     };
 
     componentDidMount() {
+
+        const restaurants = this.initRestaurants(this.state.restaurants);
+
+        this.setState({ restaurants }, () => {
+            this.state.restaurants.map((restaurant, index) => {
+                return RestaurantProvider.getDailyMenu(restaurant.id, restaurant.source)
+                    .then(dailyMenu => {
+                        const restaurants = this.state.restaurants.slice();
+                        restaurants[index] = {
+                            ...restaurant,
+                            ...dailyMenu
+                        };
+                        this.setState({ restaurants });
+                    });
+            });
+        });
+    }
+
+    initRestaurants(restaurants) {
         const savedSelection = localStorage.getItem(storageSelectionKey) || [];
+        restaurants = restaurants.slice();
 
-        ZomatoDailyMenuProvider.fetchForRestaurants(restaurants, (restaurant) => {
-
-            const restaurants = [...this.state.restaurants, {
+        return restaurants.map(restaurant => {
+            return {
                 ...restaurant,
+                updatedTime: 0,
+                dishes: [],
                 selected: savedSelection.indexOf(restaurant.id) > -1
-            }];
-
-            restaurants.sort((a, b) => a.order - b.order);
-
-            this.setState({ restaurants });
+            }
         });
     }
 

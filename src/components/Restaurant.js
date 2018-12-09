@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
-import DailyMenu from "./DailyMenu";
 import styles from "./Restaurant.module.css";
+import Dish from "./Dish";
 
 class Restaurant extends Component {
 
     render() {
-        const dailyMenus = this.props.dailyMenus.map(item => {
-            const dailyMenu = item.daily_menu;
-            return <DailyMenu key={dailyMenu.daily_menu_id} name={dailyMenu.name} dishes={dailyMenu.dishes}/>
+        const dishes = this.props.dishes.map(dish => {
+            return <Dish key={dish.id} name={dish.name} price={dish.price}/>
         });
 
-        const content = dailyMenus.length ? dailyMenus : 'Reštaurácia dnes denné menu nezverejnila';
+        const content = dishes.length ? dishes : 'Reštaurácia dnes denné menu nezverejnila';
 
         return (
             <div className={styles['restuarant']}>
