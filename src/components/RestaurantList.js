@@ -6,7 +6,14 @@ class RestaurantList extends Component {
     render() {
         const restaurants = this.props.restaurants
             .filter(item => item.selected)
-            .map(restaurant => <Restaurant key={restaurant.id} name={restaurant.name} dishes={restaurant.dishes}/>);
+            .map(restaurant =>
+                <Restaurant
+                    key={restaurant.id}
+                    updated={restaurant.updatedTime}
+                    name={restaurant.name}
+                    dishes={restaurant.dishes}
+                    color={restaurant.color}
+                />);
 
         return (
             <div className={styles['list']}>

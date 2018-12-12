@@ -1,8 +1,22 @@
 .restuarant {
+    background: #ffffff;
     max-width: 50rem;
+    margin: 2rem;
     padding: 2rem;
+    transition: filter 0.5s;
+    filter: blur(0);
+}
+
+.restuarant.loading .content {
+    filter: blur(5px);
+}
+
+.restuarant .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 .restuarant h2 {
-    margin-top: 0;
+    margin: 0;
 }
