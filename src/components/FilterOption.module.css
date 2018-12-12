@@ -1,6 +1,6 @@
 .option {
     margin-top: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.1rem;
     transition: opacity 0.2s;
     cursor: pointer;
 }
@@ -10,11 +10,27 @@
 }
 
 .option span {
-    padding: 0.1rem 0.4rem;
+    display: inline-block;
+    align-items: center;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0.2rem 0.9rem 0.2rem 0.5rem;
 }
 
 .option.selected span {
     background: #ffffff;
-    border-radius: 0.2rem;
+    border-radius: 1rem;
     color: #333333;
+}
+
+.dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.4rem;
+    background: #666666;
 }
