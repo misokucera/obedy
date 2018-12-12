@@ -1,8 +1,51 @@
 [
-  { "id": "16506745", "source": "zomato", "order": 0, "name": "KOVO (B+B Food)" },
-  { "id": "16506973", "source": "zomato", "order": 1, "name": "Restaurant Hamburg" },
-  { "id": "16506974", "source": "zomato", "order": 2, "name": "Pět peněz" },
-  { "id": "16510994", "source": "zomato", "order": 3, "name": "Avion 58" },
-  { "id": "16507232", "source": "zomato", "order": 4, "name": "Restaurant PORT58" },
-  { "id": "16506954", "source": "zomato", "order": 4, "name": "Holešovická Kozlovna" }
+  {
+    "id": "16506745",
+    "source": "zomato",
+    "order": 0,
+    "color": "#f18686",
+    "name": "KOVO (B+B Food)"
+  },
+  {
+    "id": "16506973",
+    "source": "zomato",
+    "order": 1,
+    "color": "#f1bd88",
+    "name": "Restaurant Hamburg"
+  },
+  {
+    "id": "16506974",
+    "source": "zomato",
+    "order": 2,
+    "color": "#f1e088",
+    "name": "Pět peněz"
+  },
+  {
+    "id": "16510994",
+    "source": "zomato",
+    "order": 3,
+    "color": "#bdf188",
+    "name": "Avion 58"
+  },
+  {
+    "id": "16507232",
+    "source": "zomato",
+    "order": 4,
+    "color": "#88f19a",
+    "name": "Restaurant PORT58"
+  },
+  {
+    "id": "16506954",
+    "source": "zomato",
+    "order": 4,
+    "color": "#88f1ce",
+    "name": "Holešovická Kozlovna"
+  },
+  {
+    "id": "16507071",
+    "source": "zomato",
+    "order": 5,
+    "color": "#88e0f1",
+    "name": "Port Stanley"
+  }
 ]

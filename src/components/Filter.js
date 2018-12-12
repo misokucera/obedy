@@ -23,6 +23,7 @@ class Filter extends Component {
                     id={index}
                     name={item.name}
                     selected={item.selected}
+                    color={item.color}
                     onChange={this.props.onChange}>
                 </FilterOption>
             )});

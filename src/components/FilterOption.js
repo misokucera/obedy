@@ -9,9 +9,14 @@ class FilterOption extends Component {
             classes.push(styles['selected']);
         }
 
+        const background = this.props.selected ? this.props.color : '';
+
         return (
             <p className={classes.join(' ')} onClick={() => this.props.onChange(this.props.id)}>
-                <span>{this.props.name}</span>
+                <span>
+                    <i className={styles['dot']} style={{ background: background}}/>
+                    {this.props.name}
+                </span>
             </p>
         );
     }
