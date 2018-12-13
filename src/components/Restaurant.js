@@ -3,10 +3,18 @@ import styles from "./Restaurant.module.css";
 import Dish from "./Dish";
 import Avatar from "./Avatar";
 
+const mainCoursePriceTreshold = 75;
+
 class Restaurant extends Component {
 
     render() {
-        const dishes = this.props.dishes.map(dish => {
+        let dishes = this.props.dishes;
+
+        if (this.props.showOnlyMainCourse) {
+            dishes = this.props.dishes.filter(dish => parseInt(dish.price) > mainCoursePriceTreshold);
+        }
+
+        dishes = dishes.map(dish => {
             return <Dish key={dish.id} name={dish.name} price={dish.price}/>
         });
 

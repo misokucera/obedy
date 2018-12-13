@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import styles from "./Filter.module.css";
 import FilterOption from "./FilterOption";
-import {MdExpandLess, MdExpandMore} from "react-icons/md"
+import {MdExpandLess, MdExpandMore} from "react-icons/md";
+import FilterCheckbox from "./FilterCheckbox";
 
 class Filter extends Component {
 
@@ -28,7 +29,7 @@ class Filter extends Component {
                 </FilterOption>
             )});
 
-        const icon = this.state.isCollapsed ? <MdExpandMore/> : <MdExpandLess/>;
+        const expandIcon = this.state.isCollapsed ? <MdExpandMore/> : <MdExpandLess/>;
         const classes = [styles['filter']];
 
         if (this.state.isCollapsed) {
@@ -38,11 +39,19 @@ class Filter extends Component {
         return (
             <div className={classes.join(' ')}>
                 <div className={styles['content']}>
-                    <h2>Reštaurácie</h2>
-                    {options}
+                    <div className={styles['block']}>
+                        <h2>Reštaurácie</h2>
+                        {options}
+                    </div>
+                    <div className={styles['block']}>
+                        <h2>Možnosti</h2>
+                        <FilterCheckbox checked={this.props.showOnlyMainCourse} onChecked={this.props.onOnlyMainCourseSelected}>
+                            Iba hlavné jedlá
+                        </FilterCheckbox>
+                    </div>
                 </div>
                 <div className={styles['collapse-button']} onClick={this.handleCollapseClick}>
-                    Filter {icon}
+                    Filter {expandIcon}
                 </div>
             </div>
         );
