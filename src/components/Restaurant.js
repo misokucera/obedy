@@ -20,7 +20,7 @@ class Restaurant extends Component {
         });
 
         const content = dishes.length ? dishes : 'Reštaurácia dnes denné menu nezverejnila';
-        const classes = [styles['restuarant']];
+        const classes = [styles['restaurant']];
 
         if (this.props.updated === 0) {
             classes.push(styles['loading']);

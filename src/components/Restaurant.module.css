@@ -1,23 +1,29 @@
-.restuarant {
+.restaurant {
     background: #ffffff;
     max-width: 50rem;
-    margin: 2rem;
+    margin: 0.7rem;
     padding: 2rem;
     transition: filter 0.5s;
     filter: blur(0);
 }
 
-.restuarant.loading .content {
+@media screen and (min-width: 768px) {
+    .restaurant {
+        margin: 2rem;
+    }
+}
+
+.restaurant.loading .content {
     filter: blur(5px);
 }
 
-.restuarant .header {
+.restaurant .header {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
 }
 
-.restuarant h2 {
+.restaurant h2 {
     margin: 0;
 }
 
