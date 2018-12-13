@@ -31,10 +31,12 @@ class Restaurant extends Component {
                     <Avatar background={this.props.color}>{this.props.name[0] || ''}</Avatar>
                     <h2>{this.props.name}</h2>
                 </div>
-                <div className={styles['content']}>{content}</div>
-                <div className={styles['info']}>
-                    <DateTime class={styles['date']} timestamp={this.props.updated}/>
-                </div>
+                <div className={styles['content']}>
+                    {content}
+                    <div className={styles['info']}>
+                        <DateTime class={styles['date']} timestamp={this.props.updated}/>
+                    </div>
+                 </div>
             </div>
         );
     }

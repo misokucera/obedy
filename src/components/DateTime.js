@@ -3,16 +3,17 @@ import moment from "moment/moment";
 
 class DateTime extends Component {
 
-    format(timestamp) {
-        return timestamp ? moment(timestamp).format('D.M.Y HH:mm:ss') : '';
+    format(timestamp, format) {
+        return timestamp ? moment(timestamp).format(format) : '';
     }
 
     render() {
-        const dateTime = this.format(this.props.timestamp);
+        const date = this.format(this.props.timestamp, 'D.M.Y');
+        const time = this.format(this.props.timestamp, 'HH:mm:ss');
 
         return (
             <span className={this.props.class}>
-                {dateTime ? 'Aktualizované v ' + dateTime : "…"}
+                {date && time ? 'Aktualizované ' + date + ' o ' + time : ''}
             </span>
         );
     }
