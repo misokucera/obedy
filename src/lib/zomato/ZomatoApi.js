@@ -1,4 +1,4 @@
-import config from "./../zomato.config";
+import config from "../../zomato.config";
 import ZomatoNormalizer from "./ZomatoNormalizer";
 
 const menuApiUrl = config.api.url + 'dailymenu';

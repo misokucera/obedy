@@ -1,28 +1,11 @@
-const stopWords = [
-    '^POLÉVKA$',
-    'HLAVNÍ JÍDLA',
-    'DNES PO DOBU',
-    'S MOŽNOSTÍ ZAKOUPENÍ',
-    'SALÁTY a MALÁ LEHKÁ JÍDLA',
-    'Informaci o alergenech',
-    'Dle denní nabídky',
-    '^menu$',
-    '^SALÁT$',
-    '^SPECIALITA$',
-    '^Specialita dne$',
-    '^DEZERT$',
-    '^HLAVNÍ CHOD$',
-    '^Bezmasé jídlo$',
-    '^Stálá nabídka$',
-    '^NÁPOJ K POLEDNÍMU MENU$'
-];
+import stopWords from "./stop-words";
 
 class ZomatoNormalizer {
 
-    static normalizeDailyMenu(data) {
-        const dishesPerMenu = data.daily_menus.map(item => item.daily_menu.dishes.map(ZomatoNormalizer.normalizeDish));
-        let dishes = dishesPerMenu.reduce((acc, value) => acc.concat(value), []);
+    static normalizeDailyMenu(dailyMenuData) {
+        let dishes = [];
 
+        dishes = ZomatoNormalizer.extractDishes(dailyMenuData);
         dishes = ZomatoNormalizer.removeStopWords(dishes, stopWords);
         dishes = ZomatoNormalizer.mergeMultiLineDishes(dishes);
 
@@ -32,7 +15,12 @@ class ZomatoNormalizer {
         };
     }
 
-    static normalizeDish(data) {
+    static extractDishes(data) {
+        const dishesPerMenu = data.daily_menus.map(item => item.daily_menu.dishes.map(ZomatoNormalizer.simplifyDish));
+        return dishesPerMenu.reduce((acc, value) => acc.concat(value), []);
+    }
+
+    static simplifyDish(data) {
         return {
             id: data.dish.dish_id,
             name: data.dish.name,

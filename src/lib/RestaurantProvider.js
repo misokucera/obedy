@@ -1,5 +1,5 @@
 import FirebaseApi from "./FirebaseApi";
-import ZomatoApi from "./ZomatoApi";
+import ZomatoApi from "./zomato/ZomatoApi";
 
 const cacheInterval = 15 * 60 * 1000;
 
