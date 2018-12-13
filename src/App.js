@@ -53,7 +53,7 @@ class App extends Component {
     }
 
     loadFilterState() {
-        return JSON.parse(localStorage.getItem(storageFilterKey));
+        return JSON.parse(localStorage.getItem(storageFilterKey)) || defaultFilter;
     }
 
     handleRestaurantSelection = (index) => {
