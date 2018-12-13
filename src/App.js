@@ -10,7 +10,8 @@ const storageSelectionKey = 'selected';
 class App extends Component {
 
     state = {
-        restaurants: restaurants || []
+        restaurants: restaurants || [],
+        showOnlyMainCourse: true
     };
 
     componentDidMount() {
@@ -65,7 +66,7 @@ class App extends Component {
         return (
             <div className={styles['layout']}>
                 <Filter restaurants={this.state.restaurants} onChange={this.handleSelection}/>
-                <RestaurantList restaurants={this.state.restaurants}/>
+                <RestaurantList restaurants={this.state.restaurants} showOnlyMainCourse={this.state.showOnlyMainCourse}/>
             </div>
         );
     }

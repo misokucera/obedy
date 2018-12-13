@@ -13,6 +13,7 @@ class RestaurantList extends Component {
                     name={restaurant.name}
                     dishes={restaurant.dishes}
                     color={restaurant.color}
+                    showOnlyMainCourse={this.props.showOnlyMainCourse}
                 />);
 
         return (
