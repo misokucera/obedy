@@ -5,19 +5,25 @@ import styles from "./App.module.css";
 import restaurants from "./restaurants"
 import RestaurantProvider from "./lib/RestaurantProvider";
 
-const storageSelectionKey = 'selected';
+const storageRestaurantsKey = 'restaurants';
+const storageFilterKey = 'filter';
+
+const defaultFilter = {
+    showOnlyMainCourse: true
+};
 
 class App extends Component {
 
     state = {
-        restaurants: restaurants || []
+        restaurants: restaurants || [],
+        filter: defaultFilter
     };
 
     componentDidMount() {
-
-        const restaurants = this.initRestaurants(this.state.restaurants);
-
-        this.setState({ restaurants }, () => {
+        this.setState({
+            restaurants: this.initRestaurants(this.state.restaurants),
+            filter: this.loadFilterState()
+        }, () => {
             this.state.restaurants.map((restaurant, index) => {
                 return RestaurantProvider.getDailyMenu(restaurant.id, restaurant.source)
                     .then(dailyMenu => {
@@ -33,7 +39,7 @@ class App extends Component {
     }
 
     initRestaurants(restaurants) {
-        const savedSelection = localStorage.getItem(storageSelectionKey) || [];
+        const savedSelection = localStorage.getItem(storageRestaurantsKey) || [];
         restaurants = restaurants.slice();
 
         return restaurants.map(restaurant => {
@@ -46,26 +52,47 @@ class App extends Component {
         });
     }
 
-    handleSelection = (index) => {
+    loadFilterState() {
+        return JSON.parse(localStorage.getItem(storageFilterKey));
+    }
+
+    handleRestaurantSelection = (index) => {
         const restaurants = this.state.restaurants.slice();
         restaurants[index].selected = !restaurants[index].selected;
 
-        this.setState({ restaurants }, this.updateSavedSelection);
+        this.setState({ restaurants }, this.storeRestaurantSelectionState);
     };
 
-    updateSavedSelection = () => {
+    handleOnlyMainCourseSelection = () => {
+        this.setState({
+            filter: {
+                showOnlyMainCourse: !this.state.filter.showOnlyMainCourse
+            }
+        }, this.storeFilterState);
+    };
+
+    storeFilterState() {
+        localStorage.setItem(storageFilterKey, JSON.stringify(this.state.filter));
+    }
+
+    storeRestaurantSelectionState = () => {
         const selectedRestaurants = this.state.restaurants
             .filter(item => item.selected)
             .map(item => item.id);
 
-        localStorage.setItem(storageSelectionKey, JSON.stringify(selectedRestaurants));
+        localStorage.setItem(storageRestaurantsKey, JSON.stringify(selectedRestaurants));
     };
 
     render() {
         return (
             <div className={styles['layout']}>
-                <Filter restaurants={this.state.restaurants} onChange={this.handleSelection}/>
-                <RestaurantList restaurants={this.state.restaurants}/>
+                <Filter
+                    restaurants={this.state.restaurants}
+                    onChange={this.handleRestaurantSelection}
+                    showOnlyMainCourse={this.state.filter.showOnlyMainCourse}
+                    onOnlyMainCourseSelected={this.handleOnlyMainCourseSelection}
+                />
+                <RestaurantList restaurants={this.state.restaurants} showOnlyMainCourse={this.state.filter.showOnlyMainCourse}/>
             </div>
         );
     }

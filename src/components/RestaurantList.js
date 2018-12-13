@@ -13,6 +13,9 @@ class RestaurantList extends Component {
                     name={restaurant.name}
                     dishes={restaurant.dishes}
                     color={restaurant.color}
+                    source={restaurant.source}
+                    url={restaurant.url}
+                    showOnlyMainCourse={this.props.showOnlyMainCourse}
                 />);
 
         return (

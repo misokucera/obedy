@@ -11,6 +11,10 @@
     margin-top: 0;
 }
 
+.block {
+    margin-bottom: 2rem;
+}
+
 .filter.is-collapsed .content {
     display: none;
 }

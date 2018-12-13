@@ -1,7 +1,7 @@
 import FirebaseApi from "./FirebaseApi";
-import ZomatoApi from "./ZomatoApi";
+import ZomatoApi from "./zomato/ZomatoApi";
 
-const cacheInterval = 5 * 60 *1000;
+const cacheInterval = 15 * 60 * 1000;
 
 class RestaurantProvider {
     static getDailyMenu(restaurantId, source) {
