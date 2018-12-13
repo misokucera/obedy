@@ -1,0 +1,14 @@
+.label {
+    display: inline-block;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.2rem;
+    background: #a5a5a5;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+}
+
+.label.link:hover {
+    background: #c2c2c2;
+}

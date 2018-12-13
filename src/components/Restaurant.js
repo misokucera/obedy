@@ -3,6 +3,7 @@ import styles from "./Restaurant.module.css";
 import Dish from "./Dish";
 import Avatar from "./Avatar";
 import DateTime from "./DateTime";
+import Label from "./Label";
 
 const mainCoursePriceThreshold = 75;
 
@@ -34,6 +35,7 @@ class Restaurant extends Component {
                 <div className={styles['content']}>
                     {content}
                     <div className={styles['info']}>
+                        {this.props.source && <Label url={this.props.url}>{this.props.source}</Label>}
                         <DateTime class={styles['date']} timestamp={this.props.updated}/>
                     </div>
                  </div>
