@@ -4,48 +4,55 @@
     "source": "zomato",
     "order": 0,
     "color": "#f18686",
-    "name": "KOVO (B+B Food)"
+    "name": "KOVO (B+B Food)",
+    "url": "https://www.zomato.com/sk/praha/b-b-food-hole%C5%A1ovice-praha-7/denn%C3%A9-menu"
   },
   {
     "id": "16506973",
     "source": "zomato",
     "order": 1,
     "color": "#f1bd88",
-    "name": "Restaurant Hamburg"
+    "name": "Restaurant Hamburg",
+    "url": "https://www.zomato.com/sk/praha/restaurant-hamburg-hole%C5%A1ovice-praha-7/denn%C3%A9-menu"
   },
   {
     "id": "16506974",
     "source": "zomato",
     "order": 2,
     "color": "#f1e088",
-    "name": "Pět peněz"
+    "name": "Pět peněz",
+    "url": "https://www.zomato.com/sk/praha/p%C4%9Bt-pen%C4%9Bz-hole%C5%A1ovice-praha-7/denn%C3%A9-menu"
   },
   {
     "id": "16510994",
     "source": "zomato",
     "order": 3,
     "color": "#bdf188",
-    "name": "Avion 58"
+    "name": "Avion 58",
+    "url": "https://www.zomato.com/sk/praha/avion-58-hole%C5%A1ovice-praha-7/denn%C3%A9-menu"
   },
   {
     "id": "16507232",
     "source": "zomato",
     "order": 4,
     "color": "#88f19a",
-    "name": "Restaurant PORT58"
+    "name": "Restaurant PORT58",
+    "url": "https://www.zomato.com/sk/port58/denn%C3%A9-menu"
   },
   {
     "id": "16506954",
     "source": "zomato",
     "order": 4,
     "color": "#88f1ce",
-    "name": "Holešovická Kozlovna"
+    "name": "Holešovická Kozlovna",
+    "url": "https://www.zomato.com/sk/praha/hole%C5%A1ovick%C3%A1-kozlovna-hole%C5%A1ovice-praha-7/denn%C3%A9-menu"
   },
   {
     "id": "16507071",
     "source": "zomato",
     "order": 5,
     "color": "#88e0f1",
-    "name": "Port Stanley"
+    "name": "Port Stanley",
+    "url": "https://www.zomato.com/sk/praha/port-stanley-hole%C5%A1ovice-praha-7/denn%C3%A9-menu"
   }
 ]

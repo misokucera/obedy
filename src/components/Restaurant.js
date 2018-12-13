@@ -2,16 +2,17 @@ import React, {Component} from 'react';
 import styles from "./Restaurant.module.css";
 import Dish from "./Dish";
 import Avatar from "./Avatar";
+import DateTime from "./DateTime";
+import Label from "./Label";
 
-const mainCoursePriceTreshold = 75;
+const mainCoursePriceThreshold = 75;
 
 class Restaurant extends Component {
-
     render() {
         let dishes = this.props.dishes;
 
         if (this.props.showOnlyMainCourse) {
-            dishes = this.props.dishes.filter(dish => parseInt(dish.price) > mainCoursePriceTreshold);
+            dishes = this.props.dishes.filter(dish => parseInt(dish.price) > mainCoursePriceThreshold);
         }
 
         dishes = dishes.map(dish => {
@@ -19,7 +20,7 @@ class Restaurant extends Component {
         });
 
         const content = dishes.length ? dishes : 'Reštaurácia dnes denné menu nezverejnila';
-        const classes = [styles['restuarant']];
+        const classes = [styles['restaurant']];
 
         if (this.props.updated === 0) {
             classes.push(styles['loading']);
@@ -31,7 +32,13 @@ class Restaurant extends Component {
                     <Avatar background={this.props.color}>{this.props.name[0] || ''}</Avatar>
                     <h2>{this.props.name}</h2>
                 </div>
-                <div className={styles['content']}>{content}</div>
+                <div className={styles['content']}>
+                    {content}
+                    <div className={styles['info']}>
+                        {this.props.source && <Label url={this.props.url}>{this.props.source}</Label>}
+                        <DateTime class={styles['date']} timestamp={this.props.updated}/>
+                    </div>
+                 </div>
             </div>
         );
     }
