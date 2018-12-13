@@ -47,11 +47,17 @@ class App extends Component {
         });
     }
 
-    handleSelection = (index) => {
+    handleRestaurantSelection = (index) => {
         const restaurants = this.state.restaurants.slice();
         restaurants[index].selected = !restaurants[index].selected;
 
         this.setState({ restaurants }, this.updateSavedSelection);
+    };
+
+    handleOnlyMainCourseSelection = () => {
+        this.setState({
+            showOnlyMainCourse: !this.state.showOnlyMainCourse
+        });
     };
 
     updateSavedSelection = () => {
@@ -65,7 +71,12 @@ class App extends Component {
     render() {
         return (
             <div className={styles['layout']}>
-                <Filter restaurants={this.state.restaurants} onChange={this.handleSelection}/>
+                <Filter
+                    restaurants={this.state.restaurants}
+                    onChange={this.handleRestaurantSelection}
+                    showOnlyMainCourse={this.state.showOnlyMainCourse}
+                    onOnlyMainCourseSelected={this.handleOnlyMainCourseSelection}
+                />
                 <RestaurantList restaurants={this.state.restaurants} showOnlyMainCourse={this.state.showOnlyMainCourse}/>
             </div>
         );
