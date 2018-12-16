@@ -4,10 +4,30 @@ import Dish from "./Dish";
 import Avatar from "./Avatar";
 import DateTime from "./DateTime";
 import Label from "./Label";
+import TextPlaceholder from "./TextPlaceholder";
+import AnimateHeight from 'react-animate-height';
 
 const mainCoursePriceThreshold = 75;
 
 class Restaurant extends Component {
+    state = {
+        height: 'auto'
+    };
+
+    componentDidMount() {
+        this.setState({
+            height: this.placeholder.scrollHeight
+        });
+    }
+
+    componentDidUpdate() {
+        if (this.state.height !== this.placeholder.scrollHeight) {
+            this.setState({
+                height: this.placeholder.scrollHeight
+            });
+        }
+    }
+
     render() {
         let dishes = this.props.dishes;
 
@@ -20,24 +40,28 @@ class Restaurant extends Component {
         });
 
         const content = dishes.length ? dishes : 'Reštaurácia dnes denné menu nezverejnila';
-        const classes = [styles['restaurant']];
-
-        if (this.props.updated === 0) {
-            classes.push(styles['loading']);
-        }
 
         return (
-            <div className={classes.join(' ')}>
+            <div className={styles['restaurant']}>
                 <div className={styles['header']}>
                     <Avatar background={this.props.color}>{this.props.name[0] || ''}</Avatar>
                     <h2>{this.props.name}</h2>
                 </div>
                 <div className={styles['content']}>
-                    {content}
-                    <div className={styles['info']}>
-                        {this.props.source && <Label url={this.props.url}>{this.props.source}</Label>}
-                        <DateTime class={styles['date']} timestamp={this.props.updated}/>
-                    </div>
+                    <AnimateHeight duration={500} height={this.state.height}>
+                        <div ref={placeholder => this.placeholder = placeholder}>
+                            {this.props.updated
+                                ? <div>
+                                    {content}
+                                    <div className={styles['info']}>
+                                        {this.props.source && <Label url={this.props.url}>{this.props.source}</Label>}
+                                        <DateTime class={styles['date']} timestamp={this.props.updated}/>
+                                    </div>
+                                  </div>
+                                : <TextPlaceholder/>
+                            }
+                        </div>
+                    </AnimateHeight>
                  </div>
             </div>
         );

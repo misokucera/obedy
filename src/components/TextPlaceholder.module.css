@@ -1,0 +1,11 @@
+.placeholder {
+    margin: 2rem 0;
+}
+
+.line {
+    background: #eeeeee;
+    height: 0.8rem;
+    margin: 0.5rem 0;
+    width: 0;
+    transition: width 0.5s;
+}
