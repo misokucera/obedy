@@ -35,6 +35,7 @@ class RestaurantCard extends Component {
     render() {
         const data = this.props.data;
         const dishes = this.filterDishes(data.dishes, this.props.filter);
+        const content = data.updatedTime ? this.renderDishes(dishes) : <TextPlaceholder/>;
 
         return (
             <Card>
@@ -42,8 +43,8 @@ class RestaurantCard extends Component {
                     <Avatar background={data.color}>{data.name[0] || ''}</Avatar>
                     <h2>{data.name}</h2>
                 </CardHeader>
-                <CardContent ready={data.updatedTime} placeholder={<TextPlaceholder/>}>
-                    {this.renderDishes(dishes)}
+                <CardContent>
+                    {content}
                 </CardContent>
                 <CardFooter>
                     <Label url={data.url}>{data.source}</Label>

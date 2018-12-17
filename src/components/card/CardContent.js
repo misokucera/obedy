@@ -25,10 +25,7 @@ class CardContent extends Component {
         return (
             <AnimateHeight duration={500} height={this.state.height}>
                 <div ref={placeholder => this.placeholder = placeholder}>
-                    {this.props.ready
-                        ? this.props.children
-                        : this.props.placeholder
-                    }
+                    {this.props.children}
                 </div>
             </AnimateHeight>
         );
