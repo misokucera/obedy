@@ -2,10 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     background: #eeeeee;
+    margin-top: 3.5rem;
 }
 
 @media screen and (min-width: 768px) {
     .layout {
-        min-height: 100vh;
+        margin-left: 15rem;
+        margin-top: 0;
     }
 }

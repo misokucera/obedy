@@ -11,7 +11,7 @@ const mainCoursePriceThreshold = 75;
 
 class Restaurant extends Component {
     state = {
-        height: 'auto'
+        height: 1
     };
 
     componentDidMount() {

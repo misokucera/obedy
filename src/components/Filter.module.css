@@ -4,7 +4,9 @@
     padding: 1rem;
     width: 100%;
     box-sizing: border-box;
-    flex: 0 0 auto;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 
 .filter h2 {
@@ -34,7 +36,8 @@
 
 @media screen and (min-width: 768px) {
     .filter {
-        width: 15rem
+        width: 15rem;
+        min-height: 100vh;
     }
 
     .filter .collapse-button {

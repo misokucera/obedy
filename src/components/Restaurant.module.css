@@ -7,7 +7,8 @@
 
 @media screen and (min-width: 768px) {
     .restaurant {
-        margin: 2rem;
+        margin: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 }
 
