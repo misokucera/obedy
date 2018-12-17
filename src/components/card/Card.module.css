@@ -1,0 +1,13 @@
+.card {
+    background: #ffffff;
+    max-width: 50rem;
+    margin: 0.7rem;
+    padding: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+    .card {
+        margin: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+}
