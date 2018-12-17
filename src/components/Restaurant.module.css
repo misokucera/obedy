@@ -3,18 +3,13 @@
     max-width: 50rem;
     margin: 0.7rem;
     padding: 2rem;
-    transition: filter 0.5s;
-    filter: blur(0);
 }
 
 @media screen and (min-width: 768px) {
     .restaurant {
-        margin: 2rem;
+        margin: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-}
-
-.restaurant.loading .content {
-    filter: blur(5px);
 }
 
 .restaurant .header {
