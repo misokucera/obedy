@@ -89,10 +89,10 @@ class App extends Component {
                 <Filter
                     restaurants={this.state.restaurants}
                     onChange={this.handleRestaurantSelection}
-                    showOnlyMainCourse={this.state.filter.showOnlyMainCourse}
+                    filter={this.state.filter}
                     onOnlyMainCourseSelected={this.handleOnlyMainCourseSelection}
                 />
-                <RestaurantList restaurants={this.state.restaurants} showOnlyMainCourse={this.state.filter.showOnlyMainCourse}/>
+                <RestaurantList restaurants={this.state.restaurants} filter={this.state.filter}/>
             </div>
         );
     }
