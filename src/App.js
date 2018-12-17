@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import RestaurantList from "./components/RestaurantList";
-import Filter from "./components/Filter";
+import Filter from "./components/filter/Filter";
 import styles from "./App.module.css";
 import restaurants from "./restaurants"
 import RestaurantProvider from "./lib/RestaurantProvider";
@@ -53,7 +53,7 @@ class App extends Component {
     }
 
     loadFilterState() {
-        return JSON.parse(localStorage.getItem(storageFilterKey));
+        return JSON.parse(localStorage.getItem(storageFilterKey)) || defaultFilter;
     }
 
     handleRestaurantSelection = (index) => {
@@ -89,10 +89,10 @@ class App extends Component {
                 <Filter
                     restaurants={this.state.restaurants}
                     onChange={this.handleRestaurantSelection}
-                    showOnlyMainCourse={this.state.filter.showOnlyMainCourse}
+                    filter={this.state.filter}
                     onOnlyMainCourseSelected={this.handleOnlyMainCourseSelection}
                 />
-                <RestaurantList restaurants={this.state.restaurants} showOnlyMainCourse={this.state.filter.showOnlyMainCourse}/>
+                <RestaurantList restaurants={this.state.restaurants} filter={this.state.filter}/>
             </div>
         );
     }

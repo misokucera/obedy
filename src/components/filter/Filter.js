@@ -45,7 +45,7 @@ class Filter extends Component {
                     </div>
                     <div className={styles['block']}>
                         <h2>Možnosti</h2>
-                        <FilterCheckbox checked={this.props.showOnlyMainCourse} onChecked={this.props.onOnlyMainCourseSelected}>
+                        <FilterCheckbox checked={this.props.filter.showOnlyMainCourse} onChecked={this.props.onOnlyMainCourseSelected}>
                             Iba hlavné jedlá
                         </FilterCheckbox>
                     </div>

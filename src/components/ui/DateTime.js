@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import moment from "moment/moment";
+import styles from "./DateTime.module.css";
 
 class DateTime extends Component {
 
@@ -12,7 +13,7 @@ class DateTime extends Component {
         const time = this.format(this.props.timestamp, 'HH:mm:ss');
 
         return (
-            <span className={this.props.class}>
+            <span className={styles['date']}>
                 {date && time ? 'Aktualizované ' + date + ' o ' + time : ''}
             </span>
         );
