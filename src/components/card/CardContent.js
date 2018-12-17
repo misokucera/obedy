@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import TextPlaceholder from "../TextPlaceholder";
+import TextPlaceholder from "../ui/TextPlaceholder";
 import AnimateHeight from 'react-animate-height';
 
 class CardContent extends Component {

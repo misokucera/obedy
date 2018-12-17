@@ -3,9 +3,9 @@ import Dish from "./Dish";
 import CardHeader from "./card/CardHeader";
 import CardContent from "./card/CardContent";
 import CardFooter from "./card/CardFooter";
-import Label from "./Label";
-import DateTime from "./DateTime";
-import Avatar from "./Avatar";
+import Label from "./ui/Label";
+import DateTime from "./ui/DateTime";
+import Avatar from "./ui/Avatar";
 import Card from "./card/Card";
 
 const mainCoursePriceThreshold = 75;

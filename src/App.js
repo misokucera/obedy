@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import RestaurantList from "./components/RestaurantList";
-import Filter from "./components/Filter";
+import Filter from "./components/filter/Filter";
 import styles from "./App.module.css";
 import restaurants from "./restaurants"
 import RestaurantProvider from "./lib/RestaurantProvider";
