@@ -1,0 +1,16 @@
+.info {
+    margin-top: 1rem;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.info > * {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    margin-right: 0.5rem;
+}
+
+.info > :last-child {
+    margin-right: 0;
+}

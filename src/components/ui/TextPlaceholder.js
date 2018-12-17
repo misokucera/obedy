@@ -21,7 +21,7 @@ class TextPlaceholder extends Component {
         });
 
         return (
-            <div className={styles['placeholder']}>{lines}</div>
+            <div>{lines}</div>
         );
     }
 }
