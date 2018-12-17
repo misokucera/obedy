@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import TextPlaceholder from "../ui/TextPlaceholder";
 import AnimateHeight from 'react-animate-height';
 
 class CardContent extends Component {
@@ -26,9 +25,9 @@ class CardContent extends Component {
         return (
             <AnimateHeight duration={500} height={this.state.height}>
                 <div ref={placeholder => this.placeholder = placeholder}>
-                    {this.props.isReady
+                    {this.props.ready
                         ? this.props.children
-                        : <TextPlaceholder/>
+                        : this.props.placeholder
                     }
                 </div>
             </AnimateHeight>

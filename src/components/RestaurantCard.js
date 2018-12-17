@@ -7,6 +7,7 @@ import Label from "./ui/Label";
 import DateTime from "./ui/DateTime";
 import Avatar from "./ui/Avatar";
 import Card from "./card/Card";
+import TextPlaceholder from "./ui/TextPlaceholder";
 
 const mainCoursePriceThreshold = 75;
 const emptyMessage = 'Reštaurácia dnes denné menu nezverejnila';
@@ -41,7 +42,7 @@ class RestaurantCard extends Component {
                     <Avatar background={data.color}>{data.name[0] || ''}</Avatar>
                     <h2>{data.name}</h2>
                 </CardHeader>
-                <CardContent isReady={data.updatedTime}>
+                <CardContent ready={data.updatedTime} placeholder={<TextPlaceholder/>}>
                     {this.renderDishes(dishes)}
                 </CardContent>
                 <CardFooter>
