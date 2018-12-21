@@ -3,7 +3,6 @@ import RestaurantList from "./components/RestaurantList";
 import Filter from "./components/filter/Filter";
 import styles from "./App.module.css";
 import restaurants from "./restaurants"
-import RestaurantProvider from "./lib/RestaurantProvider";
 
 const storageRestaurantsKey = 'restaurants';
 const storageFilterKey = 'filter';
@@ -21,32 +20,17 @@ class App extends Component {
 
     componentDidMount() {
         this.setState({
-            restaurants: this.initRestaurants(this.state.restaurants),
+            restaurants: this.loadRestaurantSelection(this.state.restaurants),
             filter: this.loadFilterState()
-        }, () => {
-            this.state.restaurants.map((restaurant, index) => {
-                return RestaurantProvider.getDailyMenu(restaurant.id, restaurant.source)
-                    .then(dailyMenu => {
-                        const restaurants = this.state.restaurants.slice();
-                        restaurants[index] = {
-                            ...restaurant,
-                            ...dailyMenu
-                        };
-                        this.setState({ restaurants });
-                    });
-            });
         });
     }
 
-    initRestaurants(restaurants) {
+    loadRestaurantSelection(restaurants) {
         const savedSelection = localStorage.getItem(storageRestaurantsKey) || [];
-        restaurants = restaurants.slice();
 
         return restaurants.map(restaurant => {
             return {
                 ...restaurant,
-                updatedTime: 0,
-                dishes: [],
                 selected: savedSelection.indexOf(restaurant.id) > -1
             }
         });
