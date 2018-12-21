@@ -68,8 +68,8 @@ class RestaurantCard extends Component {
                     <Avatar background={this.props.color}>{this.props.name[0] || ''}</Avatar>
                     <h2>{this.props.name}</h2>
                 </CardHeader>
-                <CardContent ready={this.state.updateTime} placeholder={<TextPlaceholder/>}>
-                    {this.renderDishes(dishes)}
+                <CardContent>
+                    {content}
                 </CardContent>
                 <CardFooter>
                     <Label url={this.props.url}>{this.props.source}</Label>
