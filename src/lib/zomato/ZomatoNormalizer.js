@@ -10,7 +10,7 @@ class ZomatoNormalizer {
         dishes = ZomatoNormalizer.mergeMultiLineDishes(dishes);
 
         return {
-            updatedTime: Date.now(),
+            updateTime: Date.now(),
             dishes: dishes
         };
     }
