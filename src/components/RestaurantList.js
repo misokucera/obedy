@@ -8,7 +8,11 @@ class RestaurantList extends Component {
             .filter(item => item.selected)
             .map(restaurant => <RestaurantCard
                     key={restaurant.id}
-                    data={restaurant}
+                    id={restaurant.id}
+                    name={restaurant.name}
+                    color={restaurant.color}
+                    source={restaurant.source}
+                    url={restaurant.url}
                     filter={this.props.filter}
                 />);
 
