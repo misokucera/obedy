@@ -61,6 +61,7 @@ class RestaurantCard extends Component {
 
     render() {
         const dishes = this.filterDishes(this.state.dishes, this.props.filter);
+        const content = this.state.updateTime ? this.renderDishes(dishes) : <TextPlaceholder/>;
 
         return (
             <Card>
