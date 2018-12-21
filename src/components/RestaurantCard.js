@@ -25,8 +25,8 @@ class RestaurantCard extends Component {
         this.loadDailyMenu();
     }
 
-    loadDailyMenu() {
-        RestaurantProvider.getDailyMenu(this.props.id, this.props.source)
+    loadDailyMenu(useCache = true) {
+        RestaurantProvider.getDailyMenu(this.props.id, this.props.source, useCache)
             .then(dailyMenu => {
                 this.setState({
                     updateTime: dailyMenu.updateTime,
@@ -38,7 +38,7 @@ class RestaurantCard extends Component {
     handleReload = () => {
         this.setState({
             updateTime: 0
-        }, this.loadDailyMenu);
+        }, this.loadDailyMenu(false));
     };
 
     filterDishes(dishes, filter) {
