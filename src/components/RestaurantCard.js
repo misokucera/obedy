@@ -30,7 +30,7 @@ class RestaurantCard extends Component {
             .then(dailyMenu => {
                 this.setState({
                     updateTime: dailyMenu.updateTime,
-                    dishes: dailyMenu.dishes
+                    dishes: dailyMenu.dishes || []
                 });
             });
     }
