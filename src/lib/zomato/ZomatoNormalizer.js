@@ -5,9 +5,11 @@ class ZomatoNormalizer {
     static normalizeDailyMenu(dailyMenuData) {
         let dishes = [];
 
-        dishes = ZomatoNormalizer.extractDishes(dailyMenuData);
-        dishes = ZomatoNormalizer.removeStopWords(dishes, stopWords);
-        dishes = ZomatoNormalizer.mergeMultiLineDishes(dishes);
+        if (dailyMenuData.status === 'success') {
+            dishes = ZomatoNormalizer.extractDishes(dailyMenuData);
+            dishes = ZomatoNormalizer.removeStopWords(dishes, stopWords);
+            dishes = ZomatoNormalizer.mergeMultiLineDishes(dishes);
+        }
 
         return {
             updateTime: Date.now(),
