@@ -1,0 +1,8 @@
+.poll {
+    flex: 0 1 30em;
+}
+
+.sticky {
+    position: sticky;
+    top: 1em;
+}
