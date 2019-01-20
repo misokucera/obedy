@@ -1,14 +1,14 @@
 .info {
-    margin-top: 1rem;
+    margin-top: 1em;
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
 }
 
 .info > * {
-    margin-top: 0.2rem;
-    margin-bottom: 0.2rem;
-    margin-right: 0.5rem;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    margin-right: 0.5em;
 }
 
 .info > :last-child {
