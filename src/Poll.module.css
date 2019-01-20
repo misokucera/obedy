@@ -1,5 +1,13 @@
 .poll {
-    flex: 0 1 30em;
+    flex: 0 1 50em;
+    order: -1;
+}
+
+@media screen and (min-width: 1200px) {
+    .poll {
+        flex: 0 1 30em;
+        order: initial;
+    }
 }
 
 .sticky {
