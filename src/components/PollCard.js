@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-import FirebaseApi from "./lib/FirebaseApi";
-import User from "./lib/User";
-import restaurants from "./restaurants";
+import FirebaseApi from "../lib/FirebaseApi";
+import User from "../lib/User";
+import restaurants from "../restaurants";
 import styles from "./Poll.module.css";
-import Chart from "./components/Chart";
-import Card from "./components/card/Card";
-import CardContent from "./components/card/CardContent";
-import TextPlaceholder from "./components/ui/TextPlaceholder";
-import CardHeader from "./components/card/CardHeader";
-import CardFooter from "./components/card/CardFooter";
+import Chart from "./poll/Chart";
+import Card from "./card/Card";
+import CardContent from "./card/CardContent";
+import TextPlaceholder from "./ui/TextPlaceholder";
+import CardHeader from "./card/CardHeader";
+import CardFooter from "./card/CardFooter";
 
-class Poll extends Component {
+class PollCard extends Component {
 
     state = {
         pollId: 0,
@@ -26,7 +26,7 @@ class Poll extends Component {
         const pollId = this.props.match.params.id;
 
         if (pollId) {
-            const ref = FirebaseApi.loadPoll(pollId, this.updateVotes);
+            const ref = FirebaseApi.loadPoll(pollId, (snapshot) => this.update(snapshot.val()));
             const userId = User.getCurrentId();
             this.setState({ userId, pollId, pollRef: ref });
         }
@@ -38,9 +38,13 @@ class Poll extends Component {
         }
     }
 
-    updateVotes = (snapshot) => {
-        const values = snapshot.val();
+    update = (values) => {
+        this.updateSelection(values);
+        this.updateOptions(values);
+        this.updateUserCount(values);
+    };
 
+    updateSelection(values) {
         if (values && values[this.state.userId]) {
             const currentUserVotes = values[this.state.userId].votes || [];
             const restaurants = this.state.restaurants.map(restaurant => {
@@ -51,13 +55,20 @@ class Poll extends Component {
             });
             this.setState({ restaurants });
         }
+    }
 
+    updateUserCount(data) {
+        const users = Object.values(data);
+        this.setState({
+            userCount: users.filter(user => user.votes && user.votes.length).length
+        });
+    }
+
+    updateOptions(values) {
         let votes = {};
-        let userCount = 0;
 
         for (const userId in values) {
             if (values[userId].votes) {
-                userCount++;
                 values[userId].votes.forEach(vote => {
                     votes[vote] = votes[vote] ? votes[vote] + 1 : 1;
                 });
@@ -74,8 +85,8 @@ class Poll extends Component {
             }
         });
 
-        this.setState({ options, userCount });
-    };
+        this.setState({ options });
+    }
 
     vote = () => {
         FirebaseApi.updatePoll(this.state.pollId, this.state.userId, {
@@ -122,4 +133,4 @@ class Poll extends Component {
     }
 }
 
-export default Poll;
+export default PollCard;
