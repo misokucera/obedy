@@ -1,32 +1,32 @@
 import firebase from "firebase/app";
 import "firebase/database";
 
+// TODO: premenovat
 class FirebaseApi {
 
+    // TODO: presunut logiku vyssie
     static storeRestaurant(restaurantId, data) {
         return firebase.database().ref('restaurants/' + restaurantId).set(data);
     }
 
+    // TODO: presunut logiku vyssie
     static loadRestaurant(restaurantId) {
         const promise = firebase.database().ref('restaurants/' + restaurantId).once('value');
         return promise.then(snapshot => snapshot.val());
     }
 
-    static createPoll() {
-        return firebase.database().ref('polls').push().key;
+    static push(path) {
+        return firebase.database().ref(path).push().key;
     }
 
-    static loadPoll(pollId, callback) {
-        const ref = firebase.database().ref('polls/' + pollId);
-        ref.on('value', callback);
+    static subscribe(path, callback) {
+        const ref = firebase.database().ref(path);
+        ref.on('value', snapshot => callback(snapshot.val()));
         return ref;
     }
 
-    static updatePoll(pollId, userId, data) {
-        return firebase.database().ref('polls/' + pollId + "/" + userId).set({
-            ...data,
-            updateTime: Date.now()
-        });
+    static set(path, data) {
+        return firebase.database().ref(path).set(data);
     }
 }
 
