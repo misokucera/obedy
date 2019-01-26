@@ -8,13 +8,16 @@ class PollProvider {
     }
 
     static load(pollId, callback) {
-        return FirebaseApi.subscribe('polls/' + pollId, (data) => this.countResults(data, callback));
+        return FirebaseApi.subscribe('polls/' + pollId, (data) => {
+            this.countResults(data, callback)
+        });
     }
 
     static update(pollId, data) {
         const currentUser = User.getCurrentId();
         return FirebaseApi.set('polls/' + pollId + '/' + currentUser, {
             ...data,
+            userName: User.getName(),
             updateTime: Date.now()
         });
     }
@@ -29,14 +32,16 @@ class PollProvider {
 
             if (data.hasOwnProperty(userId) && data[userId].votes) {
                 userCount++;
+                const userName = data[userId].userName || '';
 
                 const votes = data[userId].votes;
 
                 votes.forEach(voteId => {
                     if (results[voteId]) {
                         results[voteId].count++;
+                        results[voteId].users.push(userName);
                     } else {
-                        results[voteId] = { count: 1, selected: false };
+                        results[voteId] = { count: 1, selected: false, users: [userName] };
                     }
                 });
             }

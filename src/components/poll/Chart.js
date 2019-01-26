@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styles from "./Chart.module.css";
+import {MdAccountCircle} from "react-icons/md/";
 
 class Chart extends Component {
 
@@ -19,10 +20,19 @@ class Chart extends Component {
                 classes.push(styles['selected']);
             }
 
+            const users = item.users.map((userName, index) => {
+                return (
+                    <span title={userName || 'anonymný'} key={index}>
+                        <MdAccountCircle/>
+                    </span>
+                );
+            });
+
             return (
                 <div className={classes.join(' ')} key={item.id} onClick={() => this.props.onSelectionChange(item.id)}>
                     <label className={styles['label']}>
-                        {item.label}
+                        <span>{item.label}</span>
+                        <span className={styles['user-icons']}>{users}</span>
                     </label>
                     <div className={styles['result']}>
                         <span className={styles['count']}>{item.value}</span>

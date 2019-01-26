@@ -3,8 +3,14 @@
 }
 
 .label {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     cursor: pointer;
+}
+
+.user-icons {
+    color: #bbbbbb;
 }
 
 .result {

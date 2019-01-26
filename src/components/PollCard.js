@@ -8,6 +8,7 @@ import TextPlaceholder from "./ui/TextPlaceholder";
 import CardHeader from "./card/CardHeader";
 import CardFooter from "./card/CardFooter";
 import PollProvider from "../lib/PollProvider";
+import UserNameInput from "./poll/UserNameInput";
 
 class PollCard extends Component {
 
@@ -31,7 +32,8 @@ class PollCard extends Component {
                     label: restaurant.name,
                     color: restaurant.color,
                     value: 0,
-                    selected: false
+                    selected: false,
+                    users: []
                 }
             });
             this.setState({ pollId, pollRef: ref, options });
@@ -50,7 +52,8 @@ class PollCard extends Component {
             return {
                 ...option,
                 value: result.count || 0,
-                selected: result.selected || false
+                selected: result.selected || false,
+                users: result.users || []
             }
         });
 
@@ -67,8 +70,11 @@ class PollCard extends Component {
 
     render() {
         const content = this.state.updateTime
-            ? <Chart options={this.state.options} onSelectionChange={this.handleSelection}/>
-            : <TextPlaceholder/>;
+            ?   <div>
+                    <UserNameInput/>
+                    <Chart options={this.state.options} onSelectionChange={this.handleSelection}/>
+                </div>
+            :   <TextPlaceholder/>;
 
         return (
             <div className={styles['poll']}>
