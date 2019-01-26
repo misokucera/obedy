@@ -35,7 +35,6 @@ class Chart extends Component {
                         <span className={styles['user-icons']}>{users}</span>
                     </label>
                     <div className={styles['result']}>
-                        <span className={styles['count']}>{item.value}</span>
                         <div className={styles['bar']}>
                             <span className={styles['value']} style={{ width: width + '%', background: item.color }}></span>
                         </div>
