@@ -3,7 +3,7 @@ import RestaurantList from "./components/RestaurantList";
 import Filter from "./components/filter/Filter";
 import styles from "./Board.module.css";
 import restaurants from "./restaurants"
-import Poll from "./Poll";
+import PollCard from "./components/PollCard";
 import {Route} from "react-router-dom";
 
 const storageRestaurantsKey = 'restaurants';
@@ -79,7 +79,7 @@ class Board extends Component {
                     onOnlyMainCourseSelected={this.handleOnlyMainCourseSelection}
                 />
                 <RestaurantList restaurants={this.state.restaurants} filter={this.state.filter}/>
-                <Route path={`/poll/:id`} component={Poll}/>
+                <Route path={`/poll/:id`} component={PollCard}/>
             </div>
         );
     }

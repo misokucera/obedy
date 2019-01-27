@@ -1,0 +1,42 @@
+.user-name {
+    margin-bottom: 1em;
+    border-bottom: 2px dashed #e8e8e8;
+    display: flex;
+    align-items: center;
+}
+
+.user-name input {
+    width: 100%;
+    padding: 0.5em;
+    border: none;
+    font-size: 1em;
+    font-weight: bolder;
+    outline: none;
+}
+
+.save-icon {
+    margin-right: 0.5em;
+    font-size: 1.3em;
+    color: #4d9413;
+    opacity: 0;
+    animation-duration: 5s;
+    animation-name: fadeInOut;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
