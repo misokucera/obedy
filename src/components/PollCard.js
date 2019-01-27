@@ -60,18 +60,25 @@ class PollCard extends Component {
         this.setState({ options, userCount, updateTime: Date.now() });
     };
 
-    handleSelection = (id) => {
-        const votes = this.state.options
-            .filter(option => option.id === id ? !option.selected : option.selected)
-            .map(option => option.id);
-
+    vote(options) {
+        const votes = options.map(option => option.id);
         PollProvider.update(this.state.pollId, { votes })
+    }
+
+    handleSelection = (id) => {
+        const options = this.state.options.filter(option => option.id === id ? !option.selected : option.selected);
+        this.vote(options);
+    };
+
+    handleNameChange = () => {
+        const options = this.state.options.filter(option => option.selected);
+        this.vote(options);
     };
 
     render() {
         const content = this.state.updateTime
             ?   <div>
-                    <UserNameInput/>
+                    <UserNameInput nameChanged={this.handleNameChange}/>
                     <Chart options={this.state.options} onSelectionChange={this.handleSelection}/>
                 </div>
             :   <TextPlaceholder/>;
