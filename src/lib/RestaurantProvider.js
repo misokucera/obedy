@@ -26,7 +26,10 @@ class RestaurantProvider {
                     return data;
                 });
         } else {
-            throw new Error(`Source '${source}' is not implemented yet.`);
+            return Promise.resolve({
+                updateTime: Date.now(),
+                dishes: [{ id: 0, name: 'Žiaľ, denné menu je dostupné iba priamo ná stránke reštaurácie. Odkaz nižšie v šedom rámčeku.' }]
+            })
         }
     }
 }
