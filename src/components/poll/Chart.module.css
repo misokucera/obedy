@@ -3,8 +3,14 @@
 }
 
 .label {
-    display: block;
+    display: flex;
+    justify-content: space-between;
     cursor: pointer;
+}
+
+.user-icons {
+    color: #bbbbbb;
+    margin-left: 0.5em;
 }
 
 .result {
@@ -27,26 +33,20 @@
     min-width: 0.7em;
 }
 
-.count {
-    flex: 0 1 1em;
-    margin-right: 0.5em;
-}
-
 .option {
-    padding: 0.5em 1em;
-    margin-bottom: 0.5em;
+    padding: 0.5em 0.7em 0.7em 0.7em;
+    margin-bottom: 0.3em;
     border-radius: 0.3em;
     cursor: pointer;
     box-sizing: border-box;
-    border: 1px solid #f2f2f2;
     transition: background-color 0.2s, opacity 0.1s;
 }
 
 .option:hover {
     opacity: 0.8;
-    border-color: #cccccc;
 }
 
+.option:hover,
 .option.selected {
     background: #f9f9f9;
 }

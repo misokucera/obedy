@@ -54,5 +54,21 @@
     "color": "#88e0f1",
     "name": "Port Stanley",
     "url": "https://www.zomato.com/sk/praha/port-stanley-hole%C5%A1ovice-praha-7/denn%C3%A9-menu"
+  },
+  {
+    "id": "1073106a-1186-4f47-bd27-41c02fe028c3",
+    "source": "puzzle salads",
+    "order": 6,
+    "color": "#9488f1",
+    "name": "Puzzle Salads",
+    "url": "https://puzzlesalads.cz/dashboard/provozovna/?idp=1"
+  },
+  {
+    "id": "339f840b-51d2-479c-ac9e-09c662e8ee32",
+    "source": "baterka",
+    "order": 6,
+    "color": "#f188b8",
+    "name": "Baterka",
+    "url": "https://www.baterka.com/"
   }
 ]

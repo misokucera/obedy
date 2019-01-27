@@ -1,15 +1,34 @@
 import uuidv4 from "uuid/v4";
 
+const storageUuidKey = 'uuid';
+const storageUserNameKey = 'userName';
+
+function getFromStorage(key) {
+    return localStorage.getItem(key) || '';
+}
+
+function setToStorageName(key, name) {
+    localStorage.setItem(key, name);
+}
+
 class User {
     static getCurrentId() {
-        let uuid = localStorage.getItem("uuid");
+        let uuid = getFromStorage(storageUuidKey);
 
         if (!uuid) {
             uuid = uuidv4();
-            localStorage.setItem("uuid", uuid);
+            setToStorageName(storageUuidKey, uuid);
         }
 
         return uuid;
+    }
+
+    static getName() {
+        return getFromStorage(storageUserNameKey);
+    }
+
+    static setName(name) {
+        return setToStorageName(storageUserNameKey, name || '');
     }
 }
 
