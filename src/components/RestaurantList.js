@@ -5,7 +5,6 @@ import styles from "./RestaurantList.module.css";
 class RestaurantList extends Component {
     render() {
         const restaurants = this.props.restaurants
-            .filter(item => item.selected)
             .map(restaurant => <RestaurantCard
                     key={restaurant.id}
                     id={restaurant.id}

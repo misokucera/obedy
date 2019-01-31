@@ -16,16 +16,43 @@ class Filter extends Component {
         });
     };
 
+    handleCheck = () => {
+        const filter = {
+            ...this.props.filter,
+            showOnlyMainCourse: !this.props.filter.showOnlyMainCourse
+        };
+
+        this.props.onChange(filter);
+    };
+
+    handleSelection = (id) => {
+        let activeRestaurants = [...this.props.filter.activeRestaurants];
+        const index = activeRestaurants.indexOf(id);
+
+        if (index >= 0) {
+            activeRestaurants.splice(index, 1);
+        } else {
+            activeRestaurants.push(id);
+        }
+
+        const filter = {
+            ...this.props.filter,
+            activeRestaurants: activeRestaurants
+        };
+
+        this.props.onChange(filter);
+    };
+
     render() {
         const options = this.props.restaurants.map((item, index) => {
             return (
                 <FilterOption
                     key={index}
-                    id={index}
+                    id={item.id}
                     name={item.name}
-                    selected={item.selected}
+                    selected={this.props.filter.activeRestaurants.indexOf(item.id) >= 0}
                     color={item.color}
-                    onChange={this.props.onChange}>
+                    onChange={this.handleSelection}>
                 </FilterOption>
             )});
 
@@ -45,7 +72,7 @@ class Filter extends Component {
                     </div>
                     <div className={styles['block']}>
                         <h2>Možnosti</h2>
-                        <FilterCheckbox checked={this.props.filter.showOnlyMainCourse} onChecked={this.props.onOnlyMainCourseSelected}>
+                        <FilterCheckbox checked={this.props.filter.showOnlyMainCourse} onChecked={this.handleCheck}>
                             Iba hlavné jedlá
                         </FilterCheckbox>
                     </div>
