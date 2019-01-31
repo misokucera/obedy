@@ -1,5 +1,5 @@
 import FirebaseApi from "./FirebaseApi";
-import User from "./User";
+import ActiveUser from "./ActiveUser";
 
 class PollProvider {
 
@@ -14,16 +14,16 @@ class PollProvider {
     }
 
     static update(pollId, data) {
-        const currentUser = User.getCurrentId();
+        const currentUser = ActiveUser.getId();
         return FirebaseApi.set('polls/' + pollId + '/' + currentUser, {
             ...data,
-            userName: User.getName(),
+            userName: ActiveUser.getName(),
             updateTime: Date.now()
         });
     }
 
     static countResults(data, callback) {
-        const currentUser = User.getCurrentId();
+        const currentUser = ActiveUser.getId();
 
         let results = {};
         let userCount = 0;

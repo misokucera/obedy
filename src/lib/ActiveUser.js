@@ -11,8 +11,8 @@ function setToStorageName(key, name) {
     localStorage.setItem(key, name);
 }
 
-class User {
-    static getCurrentId() {
+class ActiveUser {
+    static getId() {
         let uuid = getFromStorage(storageUuidKey);
 
         if (!uuid) {
@@ -32,4 +32,4 @@ class User {
     }
 }
 
-export default User;
+export default ActiveUser;

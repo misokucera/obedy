@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import User from "../../lib/User";
+import ActiveUser from "../../lib/ActiveUser";
 import styles from "./UserNameInput.module.css";
 import {MdCheck} from "react-icons/md";
 
@@ -15,7 +15,7 @@ class UserNameInput extends Component {
 
     componentDidMount() {
         this.setState({
-            name: User.getName() || ''
+            name: ActiveUser.getName() || ''
         });
     }
 
@@ -29,7 +29,7 @@ class UserNameInput extends Component {
         const timer = setTimeout(() => this.save(name), 1000);
 
         this.setState({ name, timer, saved: false }, () => {
-            User.setName(name);
+            ActiveUser.setName(name);
         });
     };
 
