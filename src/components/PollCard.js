@@ -25,7 +25,7 @@ class PollCard extends Component {
         const pollId = this.props.match.params.id;
 
         if (pollId) {
-            const ref = PollProvider.load(pollId, this.update);
+            const ref = PollProvider.subscribe(pollId, this.update);
             const options = restaurants.map(restaurant => {
                 return {
                     id: restaurant.id,
@@ -42,7 +42,7 @@ class PollCard extends Component {
 
     componentWillUnmount() {
         if (this.state.pollRef) {
-            this.state.pollRef.off();
+            PollProvider.unsubscribe(this.state.pollRef);
         }
     }
 

@@ -1,25 +1,25 @@
-import FirebaseApi from "./FirebaseApi";
+import Database from "./Database";
 import ActiveUser from "./ActiveUser";
 
 class PollProvider {
 
-    static create() {
-        return FirebaseApi.push('polls');
-    }
-
-    static load(pollId, callback) {
-        return FirebaseApi.subscribe('polls/' + pollId, (data) => {
+    static subscribe(pollId, callback) {
+        return Database.addListener('polls/' + pollId, (data) => {
             this.countResults(data, callback)
         });
     }
 
     static update(pollId, data) {
         const currentUser = ActiveUser.getId();
-        return FirebaseApi.set('polls/' + pollId + '/' + currentUser, {
+        return Database.set('polls/' + pollId + '/' + currentUser, {
             ...data,
             userName: ActiveUser.getName(),
             updateTime: Date.now()
         });
+    }
+
+    static unsubscribe(ref) {
+        Database.removeListener(ref);
     }
 
     static countResults(data, callback) {
