@@ -10,7 +10,16 @@
 
 .user-icons {
     color: #bbbbbb;
+    font-weight: normal;
     margin-left: 0.5em;
+}
+
+.user-icons span {
+    transition: color 0.2s;
+}
+
+.user-icons span:hover {
+    color: #333333;
 }
 
 .result {
@@ -58,4 +67,3 @@
 .option:not(.selected) .value {
     background: #dddddd !important;
 }
-

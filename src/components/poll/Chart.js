@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styles from "./Chart.module.css";
 import {MdAccountCircle} from "react-icons/md/";
+import ReactTooltip from "react-tooltip";
 
 class Chart extends Component {
 
@@ -22,8 +23,9 @@ class Chart extends Component {
 
             const users = item.users.map((userName, index) => {
                 return (
-                    <span title={userName || 'anonymný'} key={index}>
+                    <span data-tip={userName || 'anonymný'} key={index}>
                         <MdAccountCircle/>
+                        <ReactTooltip effect="solid"/>
                     </span>
                 );
             });

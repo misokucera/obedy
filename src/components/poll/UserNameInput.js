@@ -3,7 +3,7 @@ import ActiveUser from "../../lib/ActiveUser";
 import styles from "./UserNameInput.module.css";
 import {MdCheck} from "react-icons/md";
 
-const placeholder = 'meno';
+const placeholder = 'anonymný používateľ';
 
 class UserNameInput extends Component {
 
@@ -26,14 +26,14 @@ class UserNameInput extends Component {
             clearTimeout(this.state.timer);
         }
 
-        const timer = setTimeout(() => this.save(name), 1000);
+        const timer = setTimeout(() => this.save(), 1000);
 
         this.setState({ name, timer, saved: false }, () => {
             ActiveUser.setName(name);
         });
     };
 
-    save(name) {
+    save() {
         const timer = setTimeout(() => this.hideIcon(), 5000);
 
         if (this.props.nameChanged) {
