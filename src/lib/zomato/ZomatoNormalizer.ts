@@ -1,9 +1,10 @@
-import stopWords from "./stop-words";
+import stopWords from "./stop-words.json";
+import {DailyMenu, Dish} from "../restaurant";
 
-class ZomatoNormalizer {
+export default class ZomatoNormalizer {
 
-    static normalizeDailyMenu(dailyMenuData) {
-        let dishes = [];
+    static normalizeDailyMenu(dailyMenuData: any): DailyMenu {
+        let dishes: Dish[] = [];
 
         if (dailyMenuData.status === 'success') {
             dishes = ZomatoNormalizer.extractDishes(dailyMenuData);
@@ -17,12 +18,12 @@ class ZomatoNormalizer {
         };
     }
 
-    static extractDishes(data) {
-        const dishesPerMenu = data.daily_menus.map(item => item.daily_menu.dishes.map(ZomatoNormalizer.simplifyDish));
-        return dishesPerMenu.reduce((acc, value) => acc.concat(value), []);
+    static extractDishes(data: any): Dish[] {
+        const dishesPerMenu: Dish[] = data.daily_menus.map((item: any) => item.daily_menu.dishes.map(ZomatoNormalizer.simplifyDish));
+        return dishesPerMenu.reduce((acc: Dish[], value: Dish) => acc.concat(value), []);
     }
 
-    static simplifyDish(data) {
+    static simplifyDish(data: any): Dish {
         return {
             id: data.dish.dish_id,
             name: data.dish.name,
@@ -30,12 +31,12 @@ class ZomatoNormalizer {
         }
     }
 
-    static removeStopWords(dishes, stopWords) {
+    static removeStopWords(dishes: Dish[], stopWords: string[]): Dish[] {
         const regex = new RegExp(stopWords.join('|'), 'i');
         return dishes.filter(dish => !dish.name.match(regex));
     }
 
-    static mergeMultiLineDishes(dishes) {
+    static mergeMultiLineDishes(dishes: Dish[]): Dish[] {
         dishes.forEach((dish, index) => {
             if (!dish.price && dishes[index+1]) {
                 dishes[index+1].name = dish.name + ' ' + dishes[index+1].name;
@@ -45,5 +46,3 @@ class ZomatoNormalizer {
     }
 
 }
-
-export default ZomatoNormalizer;

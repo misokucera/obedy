@@ -1,40 +1,49 @@
-import Database from "./Database";
+import {Database, ListenerReference} from "./Database";
 import ActiveUser from "./ActiveUser";
 
-class PollProvider {
+type SubscribeCallback = (results: Results, userCount: number) => void;
+type Results = { [key: string]: Result };
+type Result = {
+    count: number,
+    users: string[],
+    selected: boolean
+};
+type Votes = string[];
 
-    static subscribe(pollId, callback) {
-        return Database.addListener('polls/' + pollId, (data) => {
-            this.countResults(data, callback)
+export default class PollProvider {
+
+    static subscribe(pollId: string, callback: SubscribeCallback): ListenerReference {
+        return Database.addListener('polls/' + pollId, (response) => {
+            this.countResults(response, callback)
         });
     }
 
-    static update(pollId, data) {
+    static update(pollId: string, votes: Votes) {
         const currentUser = ActiveUser.getId();
         return Database.set('polls/' + pollId + '/' + currentUser, {
-            ...data,
+            ...votes,
             userName: ActiveUser.getName(),
             updateTime: Date.now()
         });
     }
 
-    static unsubscribe(ref) {
+    static unsubscribe(ref: ListenerReference) {
         Database.removeListener(ref);
     }
 
-    static countResults(data, callback) {
+    private static countResults(data: any, callback: SubscribeCallback) {
         const currentUser = ActiveUser.getId();
 
-        let results = {};
+        let results: Results = {};
         let userCount = 0;
 
         for (const userId in data) {
 
             if (data.hasOwnProperty(userId) && data[userId].votes) {
                 userCount++;
-                const userName = data[userId].userName || '';
 
-                const votes = data[userId].votes;
+                const userName = data[userId].userName || '';
+                const votes: string[] = data[userId].votes;
 
                 votes.forEach(voteId => {
                     if (results[voteId]) {
@@ -49,7 +58,8 @@ class PollProvider {
 
         if (data && data[currentUser] && data[currentUser].votes) {
 
-            data[currentUser].votes.forEach(voteId => {
+            const votes: string[] = data[currentUser].votes;
+            votes.forEach(voteId => {
                 results[voteId] = {
                     ...results[voteId],
                     selected: true
@@ -60,5 +70,3 @@ class PollProvider {
         callback(results, userCount);
     };
 }
-
-export default PollProvider;
