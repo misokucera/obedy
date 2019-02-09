@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import restaurants from "../restaurants";
-import styles from "./Poll.module.css";
+import styles from "./PollCard.module.css";
 import Chart from "./poll/Chart";
 import Card from "./card/Card";
 import CardContent from "./card/CardContent";
