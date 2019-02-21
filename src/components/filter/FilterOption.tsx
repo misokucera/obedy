@@ -1,7 +1,15 @@
 import React, {Component} from 'react';
 import styles from "./FilterOption.module.css";
 
-class FilterOption extends Component {
+type Props = {
+    id: string,
+    name: string,
+    color: string,
+    selected: boolean,
+    onChange: (id: string) => void
+}
+
+export default class FilterOption extends Component<Props, {}> {
     render() {
         const classes = [styles['option']];
 
@@ -21,5 +29,3 @@ class FilterOption extends Component {
         );
     }
 }
-
-export default FilterOption;

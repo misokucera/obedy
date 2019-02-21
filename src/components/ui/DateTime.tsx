@@ -2,9 +2,13 @@ import React, {Component} from 'react';
 import moment from "moment/moment";
 import styles from "./DateTime.module.css";
 
-class DateTime extends Component {
+type Props = {
+    timestamp: number
+}
 
-    format(timestamp, format) {
+export default class DateTime extends Component<Props, {}> {
+
+    format(timestamp: number, format: string) {
         return timestamp ? moment(timestamp).format(format) : '';
     }
 
@@ -19,5 +23,3 @@ class DateTime extends Component {
         );
     }
 }
-
-export default DateTime;

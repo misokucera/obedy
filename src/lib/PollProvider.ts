@@ -2,7 +2,7 @@ import {Database, ListenerReference} from "./Database";
 import ActiveUser from "./ActiveUser";
 
 type SubscribeCallback = (results: Results, userCount: number) => void;
-type Results = { [key: string]: Result };
+export type Results = { [key: string]: Result };
 type Result = {
     count: number,
     users: string[],
@@ -21,7 +21,7 @@ export default class PollProvider {
     static update(pollId: string, votes: Votes) {
         const currentUser = ActiveUser.getId();
         return Database.set('polls/' + pollId + '/' + currentUser, {
-            ...votes,
+            votes,
             userName: ActiveUser.getName(),
             updateTime: Date.now()
         });

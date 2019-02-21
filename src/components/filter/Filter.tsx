@@ -3,8 +3,20 @@ import styles from "./Filter.module.css";
 import FilterOption from "./FilterOption";
 import {MdExpandLess, MdExpandMore} from "react-icons/md";
 import FilterCheckbox from "./FilterCheckbox";
+import {FilterState} from "../../lib/FilterProvider";
+import {Restaurant} from "../../lib/restaurant";
 
-class Filter extends Component {
+type Props = {
+    filter: FilterState,
+    onChange: (filter: FilterState) => void,
+    restaurants: Restaurant[]
+}
+
+type State = {
+    isCollapsed: boolean
+}
+
+export default class Filter extends Component<Props, State> {
 
     state = {
         isCollapsed: true
@@ -25,7 +37,7 @@ class Filter extends Component {
         this.props.onChange(filter);
     };
 
-    handleSelection = (id) => {
+    handleSelection = (id: string) => {
         let activeRestaurants = [...this.props.filter.activeRestaurants];
         const index = activeRestaurants.indexOf(id);
 
@@ -84,5 +96,3 @@ class Filter extends Component {
         );
     }
 }
-
-export default Filter;

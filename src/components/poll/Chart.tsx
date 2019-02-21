@@ -1,11 +1,26 @@
 import React, {Component} from 'react';
 import styles from "./Chart.module.css";
 import {MdAccountCircle} from "react-icons/md/";
+import {number} from "prop-types";
 
-class Chart extends Component {
+export type Option = {
+    id: string,
+    label: string,
+    value: number,
+    users: string[],
+    selected: boolean,
+    color: string
+}
 
-    getTotalCount(data) {
-        return data.reduce((acc, item) => acc + item.value, 0);
+type Props = {
+    options: Option[],
+    onSelectionChange: (id: string) => void
+}
+
+export default class Chart extends Component<Props, {}> {
+
+    private getTotalCount(options: Option[]) {
+        return options.reduce((acc, item) => acc + item.value, 0);
     }
 
     render() {
@@ -20,7 +35,7 @@ class Chart extends Component {
                 classes.push(styles['selected']);
             }
 
-            const users = item.users.map((userName, index) => {
+            const users = item.users.map((userName: string, index: number) => {
                 return (
                     <span title={userName || 'anonymný'} key={index}>
                         <MdAccountCircle/>
@@ -50,5 +65,3 @@ class Chart extends Component {
         );
     }
 }
-
-export default Chart;

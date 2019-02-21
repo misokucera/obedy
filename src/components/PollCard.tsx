@@ -1,20 +1,35 @@
 import React, {Component} from 'react';
-import restaurants from "../restaurants";
+import restaurants from "../restaurants.json";
 import styles from "./PollCard.module.css";
-import Chart from "./poll/Chart";
+import Chart, {Option} from "./poll/Chart";
 import Card from "./card/Card";
 import CardContent from "./card/CardContent";
 import TextPlaceholder from "./ui/TextPlaceholder";
 import CardHeader from "./card/CardHeader";
 import CardFooter from "./card/CardFooter";
-import PollProvider from "../lib/PollProvider";
+import PollProvider, {Results} from "../lib/PollProvider";
 import UserNameInput from "./poll/UserNameInput";
+import {ListenerReference} from "../lib/Database";
+import {RouteComponentProps} from "react-router";
+import {Restaurant} from "../lib/restaurant";
 
-class PollCard extends Component {
+type Props = {
+    id: string
+}
+
+type State = {
+    pollId: string,
+    pollRef?: ListenerReference,
+    updateTime: number,
+    options: Option[],
+    userCount: number
+}
+
+export default class PollCard extends Component<RouteComponentProps<Props>, State> {
 
     state = {
-        pollId: 0,
-        pollRef: null,
+        pollId: '',
+        pollRef: undefined,
         updateTime: 0,
         options: [],
         userCount: 0
@@ -26,7 +41,7 @@ class PollCard extends Component {
 
         if (pollId) {
             const ref = PollProvider.subscribe(pollId, this.update);
-            const options = restaurants.map(restaurant => {
+            const options: Option[] = restaurants.map((restaurant: Restaurant) => {
                 return {
                     id: restaurant.id,
                     label: restaurant.name,
@@ -41,13 +56,15 @@ class PollCard extends Component {
     }
 
     componentWillUnmount() {
-        if (this.state.pollRef) {
-            PollProvider.unsubscribe(this.state.pollRef);
+        const ref = this.state.pollRef;
+
+        if (ref) {
+            PollProvider.unsubscribe(ref);
         }
     }
 
-    update = (results, userCount) => {
-        const options = this.state.options.map(option => {
+    update = (results: Results, userCount: number) => {
+        const options: Option[] = this.state.options.map((option: Option) => {
             const result = results[option.id] || {};
             return {
                 ...option,
@@ -60,18 +77,18 @@ class PollCard extends Component {
         this.setState({ options, userCount, updateTime: Date.now() });
     };
 
-    vote(options) {
-        const votes = options.map(option => option.id);
-        PollProvider.update(this.state.pollId, { votes })
+    vote(options: Option[]) {
+        const votes: string[] = options.map(option => option.id);
+        PollProvider.update(this.state.pollId, votes)
     }
 
-    handleSelection = (id) => {
-        const options = this.state.options.filter(option => option.id === id ? !option.selected : option.selected);
+    handleSelection = (id: string) => {
+        const options = this.state.options.filter((option: Option) => option.id === id ? !option.selected : option.selected);
         this.vote(options);
     };
 
     handleNameChange = () => {
-        const options = this.state.options.filter(option => option.selected);
+        const options = this.state.options.filter((option: Option) => option.selected);
         this.vote(options);
     };
 
@@ -102,5 +119,3 @@ class PollCard extends Component {
         );
     }
 }
-
-export default PollCard;

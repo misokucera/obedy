@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import {MdRefresh} from "react-icons/md/";
 import styles from "./ReloadButton.module.css";
 
-class ReloadButton extends Component {
+type Props = {
+    active: boolean,
+    onReload: () => void
+}
+
+export default class ReloadButton extends Component<Props, {}> {
     render() {
         return (
             this.props.active
@@ -13,5 +18,3 @@ class ReloadButton extends Component {
         );
     }
 }
-
-export default ReloadButton;

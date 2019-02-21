@@ -1,4 +1,4 @@
-type FilterState = {
+export type FilterState = {
     activeRestaurants: string[],
     showOnlyMainCourse: boolean
 }
