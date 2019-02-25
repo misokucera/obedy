@@ -5,6 +5,7 @@ import {MdExpandLess, MdExpandMore} from "react-icons/md";
 import FilterCheckbox from "./FilterCheckbox";
 import {FilterState} from "../../lib/FilterProvider";
 import {Restaurant} from "../../lib/restaurant";
+import FilterSearch from "./FilterSearch";
 
 type Props = {
     filter: FilterState,
@@ -55,6 +56,27 @@ export default class Filter extends Component<Props, State> {
         this.props.onChange(filter);
     };
 
+    normalize(value: string): string {
+        return value.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    }
+
+    handleSearch = (value: string) => {
+        const regex = new RegExp(this.normalize(value), 'i');
+        const activeRestaurants = this.props.restaurants
+            .filter((restaurant: Restaurant) => {
+                const name = this.normalize(restaurant.name);
+                return name.search(regex) >= 0;
+            })
+            .map((restaurant: Restaurant) => restaurant.id);
+
+        const filter = {
+            ...this.props.filter,
+            activeRestaurants: activeRestaurants
+        };
+
+        this.props.onChange(filter);
+    };
+
     render() {
         const options = this.props.restaurants.map((item, index) => {
             return (
@@ -81,6 +103,9 @@ export default class Filter extends Component<Props, State> {
                     <div className={styles['block']}>
                         <h2>Reštaurácie</h2>
                         {options}
+                    </div>
+                    <div className={styles['block']}>
+                        <FilterSearch searched={this.handleSearch} />
                     </div>
                     <div className={styles['block']}>
                         <h2>Možnosti</h2>
