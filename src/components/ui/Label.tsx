@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import styles from "./Label.module.css";
 
-class Label extends Component {
+type Props = {
+    url: string
+}
+
+export default class Label extends Component<Props, {}> {
     render() {
         const classes = [styles['label']];
 
@@ -11,7 +15,6 @@ class Label extends Component {
 
         return (
             <a href={this.props.url}
-               style={{ background: this.props.color }}
                className={classes.join(' ')}
                target="_blank"
                rel="noopener noreferrer"
@@ -21,5 +24,3 @@ class Label extends Component {
         );
     }
 }
-
-export default Label;

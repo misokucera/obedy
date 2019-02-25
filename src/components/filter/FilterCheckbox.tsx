@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import {MdCheckBox, MdCheckBoxOutlineBlank} from "react-icons/md";
 import styles from "./FilterCheckbox.module.css";
 
-class FilterCheckbox extends Component {
+type Props = {
+    checked: boolean,
+    onChecked: () => void
+}
+
+export default class FilterCheckbox extends Component<Props, {}> {
     render() {
         const icon = this.props.checked ? <MdCheckBox/> : <MdCheckBoxOutlineBlank/>;
 
@@ -14,5 +19,3 @@ class FilterCheckbox extends Component {
         );
     }
 }
-
-export default FilterCheckbox;

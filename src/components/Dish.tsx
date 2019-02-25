@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 import styles from "./Dish.module.css";
 
-class Dish extends Component {
+type Props = {
+    name: string,
+    price: string
+}
+
+export default class Dish extends Component<Props, {}> {
     render() {
         return (
             <div className={styles['dish']}>
@@ -11,5 +16,3 @@ class Dish extends Component {
         );
     }
 }
-
-export default Dish;

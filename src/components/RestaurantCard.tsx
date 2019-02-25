@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Dish from "./Dish";
 import CardHeader from "./card/CardHeader";
 import CardContent from "./card/CardContent";
 import CardFooter from "./card/CardFooter";
@@ -10,11 +9,28 @@ import Card from "./card/Card";
 import TextPlaceholder from "./ui/TextPlaceholder";
 import RestaurantProvider from "../lib/RestaurantProvider";
 import ReloadButton from "./ui/ReloadButton";
+import {Dish as DishType, DailyMenu} from "../lib/restaurant";
+import {FilterState} from "../lib/FilterProvider";
+import Dish from "./Dish";
 
 const mainCoursePriceThreshold = 75;
 const emptyMessage = 'Reštaurácia dnes denné menu nezverejnila';
 
-class RestaurantCard extends Component {
+type Props = {
+    id: string,
+    name: string,
+    source: string,
+    color: string,
+    url: string,
+    filter: FilterState
+}
+
+type State = {
+    dishes: DishType[],
+    updateTime: number
+}
+
+export default class RestaurantCard extends Component<Props, State> {
 
     state = {
         dishes: [],
@@ -27,7 +43,7 @@ class RestaurantCard extends Component {
 
     loadDailyMenu(useCache = true) {
         RestaurantProvider.getDailyMenu(this.props.id, this.props.source, useCache)
-            .then(dailyMenu => {
+            .then((dailyMenu: DailyMenu) => {
                 this.setState({
                     updateTime: dailyMenu.updateTime,
                     dishes: dailyMenu.dishes || []
@@ -38,10 +54,10 @@ class RestaurantCard extends Component {
     handleReload = () => {
         this.setState({
             updateTime: 0
-        }, this.loadDailyMenu(false));
+        }, () => this.loadDailyMenu(false));
     };
 
-    filterDishes(dishes, filter) {
+    filterDishes(dishes: DishType[], filter: FilterState) {
         if (filter.showOnlyMainCourse) {
             return dishes.filter(dish => parseInt(dish.price) > mainCoursePriceThreshold);
         }
@@ -49,7 +65,7 @@ class RestaurantCard extends Component {
         return dishes;
     }
 
-    renderDishes(dishes) {
+    renderDishes(dishes: DishType[]) {
         if (dishes.length) {
             return dishes.map(dish => {
                 return <Dish key={dish.id} name={dish.name} price={dish.price}/>
@@ -75,11 +91,9 @@ class RestaurantCard extends Component {
                 <CardFooter>
                     <Label url={this.props.url}>{this.props.source}</Label>
                     <DateTime timestamp={this.state.updateTime}/>
-                    <ReloadButton active={this.state.updateTime} onReload={this.handleReload} />
+                    <ReloadButton active={this.state.updateTime > 0} onReload={this.handleReload} />
                 </CardFooter>
             </Card>
         );
     }
 }
-
-export default RestaurantCard;

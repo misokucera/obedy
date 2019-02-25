@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import RestaurantCard from "./RestaurantCard";
 import styles from "./RestaurantList.module.css";
+import {Restaurant} from "../lib/restaurant";
+import {FilterState} from "../lib/FilterProvider";
 
-class RestaurantList extends Component {
+type Props = {
+    restaurants: Restaurant[],
+    filter: FilterState
+}
+
+export default class List extends Component<Props, {}> {
     render() {
         const restaurants = this.props.restaurants
             .map(restaurant => <RestaurantCard
@@ -22,5 +29,3 @@ class RestaurantList extends Component {
         );
     }
 }
-
-export default RestaurantList;

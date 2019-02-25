@@ -1,20 +1,28 @@
 import React, {Component} from 'react';
 import AnimateHeight from 'react-animate-height';
 
-class CardContent extends Component {
+type State = {
+    height: number
+}
+
+class CardContent extends Component<{}, State> {
+
+    private content: HTMLDivElement | null = null;
 
     state = {
         height: 1
     };
 
     componentDidMount() {
-        this.setState({
-            height: this.content.scrollHeight
-        });
+        if (this.content) {
+            this.setState({
+                height: this.content.scrollHeight
+            });
+        }
     }
 
     componentDidUpdate() {
-        if (this.state.height !== this.content.scrollHeight) {
+        if (this.content && this.state.height !== this.content.scrollHeight) {
             this.setState({
                 height: this.content.scrollHeight
             });

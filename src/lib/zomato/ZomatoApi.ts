@@ -1,16 +1,17 @@
 import config from "../../zomato.config";
 import ZomatoNormalizer from "./ZomatoNormalizer";
+import {DailyMenu} from "../restaurant";
 
-const menuApiUrl = config.api.url + 'dailymenu';
+export default class ZomatoApi {
 
-class ZomatoApi {
+    private static readonly url = config.api.url + 'dailymenu';
 
-    static getDailyMenu(restaurantId) {
-        return ZomatoApi.fetch(menuApiUrl + '?res_id=' + restaurantId)
+    static getDailyMenu(restaurantId: string): Promise<DailyMenu> {
+        return ZomatoApi.fetch(this.url + '?res_id=' + restaurantId)
             .then(response => ZomatoNormalizer.normalizeDailyMenu(response));
     }
 
-    static fetch(url) {
+    private static fetch(url: string): Promise<any> {
         return fetch(url, {
             method: 'GET',
             headers: {'user-key': config.api.key}
@@ -18,5 +19,3 @@ class ZomatoApi {
     }
 
 }
-
-export default ZomatoApi;

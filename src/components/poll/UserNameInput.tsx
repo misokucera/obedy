@@ -1,15 +1,25 @@
-import React, {Component} from 'react';
+import React, {Component, FormEvent} from 'react';
 import ActiveUser from "../../lib/ActiveUser";
 import styles from "./UserNameInput.module.css";
 import {MdCheck} from "react-icons/md";
 
 const placeholder = 'meno';
 
-class UserNameInput extends Component {
+type Props = {
+    nameChanged: () => void
+}
+
+type State = {
+    name: string,
+    timer: number,
+    saved: boolean
+}
+
+export default class UserNameInput extends Component<Props, State> {
 
     state = {
         name: '',
-        timer: null,
+        timer: 0,
         saved: false
     };
 
@@ -19,22 +29,22 @@ class UserNameInput extends Component {
         });
     }
 
-    handleChange = (event) => {
-        const name = event.target.value;
+    handleChange = (event: FormEvent<HTMLInputElement>) => {
+        const name = event.currentTarget.value;
 
         if (this.state.timer) {
             clearTimeout(this.state.timer);
         }
 
-        const timer = setTimeout(() => this.save(name), 1000);
+        const timer = window.setTimeout(() => this.save(name), 1000);
 
         this.setState({ name, timer, saved: false }, () => {
             ActiveUser.setName(name);
         });
     };
 
-    save(name) {
-        const timer = setTimeout(() => this.hideIcon(), 5000);
+    save(name: string) {
+        const timer = window.setTimeout(() => this.hideIcon(), 5000);
 
         if (this.props.nameChanged) {
             this.props.nameChanged()
@@ -60,5 +70,3 @@ class UserNameInput extends Component {
         );
     }
 }
-
-export default UserNameInput;

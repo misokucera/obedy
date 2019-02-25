@@ -6,9 +6,9 @@ const minLines = 3;
 const maxWidth = 60;
 const minWidth = 20;
 
-class TextPlaceholder extends Component {
+export default class TextPlaceholder extends Component<{}, {}> {
 
-    randomInt(min, max) {
+    randomInt(min: number, max: number) {
         return Math.floor(Math.random() * Math.floor(max - min + 1)) + min;
     }
 
@@ -25,5 +25,3 @@ class TextPlaceholder extends Component {
         );
     }
 }
-
-export default TextPlaceholder;
