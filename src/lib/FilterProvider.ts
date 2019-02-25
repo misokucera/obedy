@@ -12,7 +12,7 @@ export default class FilterProvider {
     };
 
     static load(): FilterState {
-        const filter = JSON.parse(localStorage.getItem(this.storageKey) || '') || this.defaultFilterState;
+        const filter = JSON.parse(localStorage.getItem(this.storageKey) || '{}');
 
         return  {
             activeRestaurants: filter.activeRestaurants || this.defaultFilterState.activeRestaurants,
