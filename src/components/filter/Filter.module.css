@@ -12,14 +12,15 @@
 
 .items {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    align-items: center;
     margin-left: -1em;
 }
 
 .item-grow {
     flex-grow: 1;
     margin-left: 1em;
+    max-width: 30em;
 }
 
 .item {
