@@ -1,6 +1,5 @@
 import React, {Component, FormEvent} from 'react';
 import styles from "./FilterSearch.module.css";
-import ActiveUser from "../../lib/ActiveUser";
 
 const placeholder = 'hľadať';
 
@@ -38,7 +37,7 @@ export default class FilterSearch extends Component<Props, State> {
 
     render() {
         return (
-            <input type="text" placeholder={placeholder} value={this.state.value} onChange={this.handleChange} maxLength={100}/>
+            <input className={styles['search']} type="text" autoFocus placeholder={placeholder} value={this.state.value} onChange={this.handleChange} maxLength={100}/>
         );
     }
 }

@@ -3,6 +3,7 @@
     align-items: center;
     cursor: pointer;
     transition: opacity 0.2s;
+    margin: 1em 0;
 }
 
 .label:hover {

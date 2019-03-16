@@ -1,19 +1,13 @@
-.layout {
+.content {
     display: flex;
     flex-wrap: wrap;
     background: #eeeeee;
-    margin-top: 3.5rem;
-}
-
-@media screen and (min-width: 768px) {
-    .layout {
-        margin-left: 15rem;
-        margin-top: 0;
-    }
+    max-width: 80em;
+    margin: 0 auto;
 }
 
 @media screen and (min-width: 1200px) {
-    .layout {
+    .content {
         flex-wrap: nowrap;
     }
 }

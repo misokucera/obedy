@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import RestaurantList from "./components/RestaurantList";
-import Filter from "./components/filter/Filter";
 import styles from "./Board.module.css";
 import restaurants from "./restaurants"
 import PollCard from "./components/PollCard";
 import {Route} from "react-router-dom";
 import FilterProvider from "./lib/FilterProvider";
+import Filter from "./components/filter/Filter";
 
 class Board extends Component {
 
@@ -23,13 +23,11 @@ class Board extends Component {
 
         return (
             <div className={styles['layout']}>
-                <Filter
-                    restaurants={this.state.restaurants}
-                    onChange={this.handleFilterChange}
-                    filter={this.state.filter}
-                />
-                <RestaurantList restaurants={activeRestaurants} filter={this.state.filter}/>
-                <Route path={`/poll/:id`} component={PollCard}/>
+                <Filter restaurants={this.state.restaurants} filter={this.state.filter} onChange={this.handleFilterChange}/>
+                <div className={styles['content']}>
+                    <RestaurantList restaurants={activeRestaurants} filter={this.state.filter}/>
+                    <Route path={`/poll/:id`} component={PollCard}/>
+                </div>
             </div>
         );
     }
