@@ -1,21 +1,27 @@
 import React, {Component} from 'react';
 import RestaurantList from "./components/RestaurantList";
 import styles from "./Board.module.css";
-import restaurants from "./restaurants"
+import restaurants from "./restaurants.json"
 import PollCard from "./components/PollCard";
 import {Route} from "react-router-dom";
-import FilterProvider from "./lib/FilterProvider";
+import FilterProvider, {FilterState} from "./lib/FilterProvider";
 import Filter from "./components/filter/Filter";
+import {Restaurant} from './lib/restaurant';
 
-class Board extends Component {
+type State = {
+    restaurants: Restaurant[],
+    filter: FilterState
+}
+
+export default class Board extends Component<{}, State> {
 
     state = {
         restaurants: restaurants || [],
         filter: FilterProvider.load()
     };
 
-    handleFilterChange = (filter) => {
-        this.setState({ filter }, FilterProvider.save(filter));
+    handleFilterChange = (filter: FilterState) => {
+        this.setState({ filter }, () => FilterProvider.save(filter));
     };
 
     render() {
@@ -32,5 +38,3 @@ class Board extends Component {
         );
     }
 }
-
-export default Board;

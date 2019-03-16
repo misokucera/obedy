@@ -13,9 +13,6 @@ type Props = {
 
 export default class Filter extends Component<Props, {}> {
 
-    state = {
-    };
-
     normalize(value: string): string {
         return value.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
     }
