@@ -1,0 +1,13 @@
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    background: #eeeeee;
+    max-width: 80em;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 1200px) {
+    .content {
+        flex-wrap: nowrap;
+    }
+}

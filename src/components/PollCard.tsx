@@ -25,7 +25,7 @@ type State = {
     userCount: number
 }
 
-export default class PollCard extends Component<RouteComponentProps<Props>, State> {
+export default class PollCard extends Component<Props, State> {
 
     state = {
         pollId: '',
@@ -37,7 +37,7 @@ export default class PollCard extends Component<RouteComponentProps<Props>, Stat
 
     componentDidMount() {
 
-        const pollId = this.props.match.params.id;
+        const pollId = this.props.id;
 
         if (pollId) {
             const ref = PollProvider.subscribe(pollId, this.update);
