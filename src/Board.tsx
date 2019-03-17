@@ -31,7 +31,7 @@ export default class Board extends Component<{}, State> {
             <div className={styles['layout']}>
                 <Filter restaurants={this.state.restaurants} filter={this.state.filter} onChange={this.handleFilterChange}/>
                 <div className={styles['content']}>
-                    <RestaurantList restaurants={activeRestaurants} filter={this.state.filter}/>
+                    <RestaurantList restaurants={activeRestaurants} filter={this.state.filter} selectable={true}/>
                     <Route path={`/poll/:id`} component={PollCard}/>
                 </div>
             </div>

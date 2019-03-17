@@ -12,9 +12,11 @@ import ReloadButton from "./ui/ReloadButton";
 import {Dish as DishType, DailyMenu} from "../lib/restaurant";
 import {FilterState} from "../lib/FilterProvider";
 import Dish from "./Dish";
+import styles from "./RestaurantCard.module.css";
 
 const mainCoursePriceThreshold = 75;
 const emptyMessage = 'Reštaurácia dnes denné menu nezverejnila';
+const defaultColor = '#999999';
 
 type Props = {
     id: string,
@@ -22,6 +24,9 @@ type Props = {
     source: string,
     color: string,
     url: string,
+    selectable: boolean,
+    selected: boolean,
+    onSelection?: (id: string) => void,
     filter: FilterState
 }
 
@@ -75,25 +80,38 @@ export default class RestaurantCard extends Component<Props, State> {
         return emptyMessage;
     }
 
+    handleSelection = () => {
+        if (this.props.onSelection) {
+            this.props.onSelection(this.props.id);
+        }
+    };
+
     render() {
         const dishes = this.filterDishes(this.state.dishes, this.props.filter);
         const content = this.state.updateTime ? this.renderDishes(dishes) : <TextPlaceholder/>;
+        const color = this.props.selectable && !this.props.selected ? '' : this.props.color;
+        const classes = this.props.selectable ? styles['selectable'] : '';
+        const selectionStyle = this.props.selectable && !this.props.selected ? { color: defaultColor } : {};
 
         return (
-            <Card>
-                <CardHeader>
-                    <Avatar background={this.props.color}>{this.props.name[0] || ''}</Avatar>
-                    <h2>{this.props.name}</h2>
-                </CardHeader>
-                <CardContent>
-                    {content}
-                </CardContent>
-                <CardFooter>
-                    <Label url={this.props.url}>{this.props.source}</Label>
-                    <DateTime timestamp={this.state.updateTime}/>
-                    <ReloadButton active={this.state.updateTime > 0} onReload={this.handleReload} />
-                </CardFooter>
-            </Card>
+            <div className={classes} style={selectionStyle}>
+                <Card>
+                    <CardHeader>
+                        <div className={styles['header']} onClick={this.handleSelection}>
+                            <Avatar background={color}>{this.props.name[0] || ''}</Avatar>
+                            <h2>{this.props.name}</h2>
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        {content}
+                    </CardContent>
+                    <CardFooter>
+                        <Label url={this.props.url}>{this.props.source}</Label>
+                        <DateTime timestamp={this.state.updateTime}/>
+                        <ReloadButton active={this.state.updateTime > 0} onReload={this.handleReload} />
+                    </CardFooter>
+                </Card>
+            </div>
         );
     }
 }
