@@ -8,39 +8,38 @@ type Props = {
     restaurants: Restaurant[],
     selectable: boolean,
     filter: FilterState,
-    onSelection?: () => void
+    onSelectionChange?: (selection: string[]) => void
 }
 
 type State = {
-    selectedRestaurants: string[]
+    selection: string[]
 }
 
 export default class List extends Component<Props, State> {
 
     state = {
-        selectedRestaurants: []
+        selection: []
     };
 
     handleSelection = (id: string) => {
-        if (this.props.onSelection) {
-            this.props.onSelection();
-        }
-
-        let selection: string[] = this.state.selectedRestaurants;
+        let selection: string[] = this.state.selection;
         const index = selection.indexOf(id);
+
         if (index >= 0) {
             selection.splice(index, 1);
         } else {
             selection.push(id);
         }
 
-        this.setState({
-            selectedRestaurants: selection
-        })
+        this.setState({ selection }, () => {
+            if (this.props.onSelectionChange) {
+                this.props.onSelectionChange(this.state.selection);
+            }
+        });
     };
 
     render() {
-        const selection: string[] = this.state.selectedRestaurants;
+        const selection: string[] = this.state.selection;
         const restaurants = this.props.restaurants
             .map(restaurant => <RestaurantCard
                     key={restaurant.id}
@@ -51,7 +50,7 @@ export default class List extends Component<Props, State> {
                     selectable={this.props.selectable}
                     selected={selection.indexOf(restaurant.id) >= 0}
                     url={restaurant.url}
-                    onSelection={this.handleSelection}
+                    onSelect={this.handleSelection}
                     filter={this.props.filter}
                 />);
 

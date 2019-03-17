@@ -26,7 +26,7 @@ type Props = {
     url: string,
     selectable: boolean,
     selected: boolean,
-    onSelection?: (id: string) => void,
+    onSelect?: (id: string) => void,
     filter: FilterState
 }
 
@@ -81,8 +81,8 @@ export default class RestaurantCard extends Component<Props, State> {
     }
 
     handleSelection = () => {
-        if (this.props.onSelection) {
-            this.props.onSelection(this.props.id);
+        if (this.props.onSelect) {
+            this.props.onSelect(this.props.id);
         }
     };
 
