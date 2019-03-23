@@ -6,40 +6,22 @@ import {FilterState} from "../lib/FilterProvider";
 
 type Props = {
     restaurants: Restaurant[],
+    selection: string[],
     selectable: boolean,
     filter: FilterState,
-    onSelectionChange?: (selection: string[]) => void
+    onSelectionChange?: (id: string) => void
 }
 
-type State = {
-    selection: string[]
-}
-
-export default class List extends Component<Props, State> {
-
-    state = {
-        selection: []
-    };
+export default class List extends Component<Props, {}> {
 
     handleSelection = (id: string) => {
-        let selection: string[] = this.state.selection;
-        const index = selection.indexOf(id);
-
-        if (index >= 0) {
-            selection.splice(index, 1);
-        } else {
-            selection.push(id);
+        if (this.props.onSelectionChange) {
+            this.props.onSelectionChange(id);
         }
-
-        this.setState({ selection }, () => {
-            if (this.props.onSelectionChange) {
-                this.props.onSelectionChange(this.state.selection);
-            }
-        });
     };
 
     render() {
-        const selection: string[] = this.state.selection;
+        const selection: string[] = this.props.selection;
         const restaurants = this.props.restaurants
             .map(restaurant => <RestaurantCard
                     key={restaurant.id}

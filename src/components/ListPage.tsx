@@ -18,7 +18,7 @@ export default class ListPage extends Component<Props, State> {
     render() {
         return (
             <div className={styles['content']}>
-                <RestaurantList restaurants={this.props.restaurants} selectable={false} filter={this.props.filter}/>
+                <RestaurantList restaurants={this.props.restaurants} selectable={false} filter={this.props.filter} selection={[]} />
             </div>
         );
     }

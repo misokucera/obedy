@@ -6,7 +6,7 @@ import {MdCheck} from "react-icons/md";
 const placeholder = 'meno';
 
 type Props = {
-    nameChanged: () => void
+    nameChanged?: () => void
 }
 
 type State = {

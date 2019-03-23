@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import styles from "./Chart.module.css";
 import {MdAccountCircle} from "react-icons/md/";
-import {number} from "prop-types";
 
 export type Option = {
     id: string,
@@ -14,7 +13,7 @@ export type Option = {
 
 type Props = {
     options: Option[],
-    onSelectionChange: (id: string) => void
+    onSelectionChange?: (id: string) => void
 }
 
 export default class Chart extends Component<Props, {}> {
@@ -44,7 +43,7 @@ export default class Chart extends Component<Props, {}> {
             });
 
             return (
-                <div className={classes.join(' ')} key={item.id} onClick={() => this.props.onSelectionChange(item.id)}>
+                <div className={classes.join(' ')} key={item.id}>
                     <label className={styles['label']}>
                         <span>{item.label}</span>
                         <span className={styles['user-icons']}>{users}</span>
