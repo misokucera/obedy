@@ -23,7 +23,9 @@ export default class Chart extends Component<Props, {}> {
     }
 
     render() {
-        const options = this.props.options || [];
+        let options = this.props.options || [];
+        options = options.sort((a, b) => b.value - a.value);
+
         const count = this.getTotalCount(options);
 
         const bars = options.map(item => {
