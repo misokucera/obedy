@@ -5,13 +5,13 @@ import Card from "./card/Card";
 import CardContent from "./card/CardContent";
 import CardHeader from "./card/CardHeader";
 import CardFooter from "./card/CardFooter";
-import {Voting} from "../lib/PollProvider";
+import {Result} from "../lib/PollProvider";
 import UserNameInput from "./poll/UserNameInput";
 import {ListenerReference} from "../lib/Database";
 import {Restaurant} from "../lib/restaurant";
 
 type Props = {
-    voting: Voting,
+    result: Result,
     restaurants: Restaurant[]
 }
 
@@ -27,12 +27,12 @@ export default class PollCard extends Component<Props, State> {
         updateTime: 0
     };
 
-    generateOptions(voting: Voting): Option[] {
+    generateOptions(result: Result): Option[] {
 
         let votesPerRestaurant: { [key: string]: string[] } = {};
 
-        Object.keys(voting).forEach(index => {
-            const userVotes: string[] = voting[index].votes || [];
+        Object.keys(result).forEach(index => {
+            const userVotes: string[] = result[index].restaurantIds || [];
             userVotes.forEach(vote => {
                 if (votesPerRestaurant[vote]) {
                     votesPerRestaurant[vote].push(index);
@@ -57,11 +57,11 @@ export default class PollCard extends Component<Props, State> {
 
     render() {
         const userCount = Object
-            .keys(this.props.voting)
-            .map(i => this.props.voting[i])
-            .filter(item => item.votes).length;
+            .keys(this.props.result)
+            .map(i => this.props.result[i])
+            .filter(item => item.restaurantIds).length;
 
-        const options = this.generateOptions(this.props.voting);
+        const options = this.generateOptions(this.props.result);
 
         return (
             <div className={styles['poll']}>

@@ -4,7 +4,7 @@ import PollCard from "./PollCard";
 import {Restaurant} from "../lib/restaurant";
 import {FilterState} from "../lib/FilterProvider";
 import styles from "./VotingPage.module.css";
-import PollProvider, {Voting} from "../lib/PollProvider";
+import PollProvider, {Result} from "../lib/PollProvider";
 import {ListenerReference} from "../lib/Database";
 import ActiveUser from "../lib/ActiveUser";
 
@@ -16,14 +16,14 @@ type Props = {
 
 type State = {
     pollRef?: ListenerReference,
-    voting: Voting
+    result: Result
 }
 
 export default class VotingPage extends Component<Props, State> {
 
     state = {
         pollRef: undefined,
-        voting: {} as Voting
+        result: {} as Result
     };
 
     componentDidMount() {
@@ -41,9 +41,9 @@ export default class VotingPage extends Component<Props, State> {
         }
     }
 
-    handleAllVoteChanges = (voting?: Voting) => {
-        if (voting) {
-            this.setState({ voting })
+    handleAllVoteChanges = (result?: Result) => {
+        if (result) {
+            this.setState({ result })
         }
     };
 
@@ -64,8 +64,8 @@ export default class VotingPage extends Component<Props, State> {
     getActiveUserSelection(): string[] {
         const activeUser = ActiveUser.getId();
 
-        if (this.state.voting && this.state.voting[activeUser]) {
-            return this.state.voting[activeUser].votes || [];
+        if (this.state.result && this.state.result[activeUser]) {
+            return this.state.result[activeUser].restaurantIds || [];
         }
 
         return [];
@@ -81,7 +81,7 @@ export default class VotingPage extends Component<Props, State> {
                     selection={this.getActiveUserSelection()}
                     onSelectionChange={this.handleSelectionChange}
                 />
-                <PollCard voting={this.state.voting}  restaurants={this.props.restaurants}/>
+                <PollCard result={this.state.result}  restaurants={this.props.restaurants}/>
             </div>
         );
     }

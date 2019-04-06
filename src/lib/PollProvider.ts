@@ -1,11 +1,16 @@
 import {Database, ListenerReference} from "./Database";
 import ActiveUser from "./ActiveUser";
 
-type SubscribeCallback = (voting?: Voting) => void;
+type SubscribeCallback = (result?: Result) => void;
 
-export type Voting = { [key: string]: { votes: string[] } };
+type UserChoice = {
+    userName: string,
+    restaurantIds: string[]
+};
 
-type Votes = string[];
+export type Result = {
+    [key: string]: UserChoice
+};
 
 export default class PollProvider {
 
@@ -15,10 +20,10 @@ export default class PollProvider {
         });
     }
 
-    static update(pollId: string, votes: Votes) {
+    static update(pollId: string, restaurantIds: string[]) {
         const currentUser = ActiveUser.getId();
         return Database.set('polls/' + pollId + '/' + currentUser, {
-            votes,
+            restaurantIds,
             userName: ActiveUser.getName(),
             updateTime: Date.now()
         });
