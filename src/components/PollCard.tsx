@@ -31,24 +31,25 @@ export default class PollCard extends Component<Props, State> {
 
         let votesPerRestaurant: { [key: string]: string[] } = {};
 
-        Object.keys(result).forEach(index => {
-            const userVotes: string[] = result[index].restaurantIds || [];
-            userVotes.forEach(vote => {
-                if (votesPerRestaurant[vote]) {
-                    votesPerRestaurant[vote].push(index);
+        Object.keys(result).forEach(userId => {
+            const userChoice = result[userId];
+
+            userChoice.restaurantIds.forEach(restaurantId => {
+                if (votesPerRestaurant[restaurantId]) {
+                    votesPerRestaurant[restaurantId].push(userId);
                 } else {
-                    votesPerRestaurant[vote] = [index];
+                    votesPerRestaurant[restaurantId] = [userId];
                 }
             });
         });
 
-        return Object.keys(votesPerRestaurant).map(index => {
-            const restaurant = this.props.restaurants.find(restaurant => restaurant.id === index);
+        return Object.keys(votesPerRestaurant).map(restaurantId => {
+            const restaurant = this.props.restaurants.find(restaurant => restaurant.id === restaurantId);
             return {
-                id: index,
+                id: restaurantId,
                 label: restaurant ? restaurant.name || '' : '',
-                value: votesPerRestaurant[index].length,
-                users: votesPerRestaurant[index],
+                value: votesPerRestaurant[restaurantId].length,
+                users: votesPerRestaurant[restaurantId].map(userId => result[userId].userName || ''),
                 selected: true,
                 color: restaurant ? restaurant.color || '' : ''
             }
