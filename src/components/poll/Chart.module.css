@@ -34,21 +34,10 @@
 }
 
 .option {
-    padding: 0.5em 0.7em 0.7em 0.7em;
-    margin-bottom: 0.3em;
+    padding: 0.5em 0;
     border-radius: 0.3em;
     cursor: pointer;
     box-sizing: border-box;
-    transition: background-color 0.2s, opacity 0.1s;
-}
-
-.option:hover {
-    opacity: 0.8;
-}
-
-.option:hover,
-.option.selected {
-    background: #f9f9f9;
 }
 
 .option.selected .label {

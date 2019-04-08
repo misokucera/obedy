@@ -6,7 +6,6 @@ import CardContent from "./card/CardContent";
 import CardHeader from "./card/CardHeader";
 import CardFooter from "./card/CardFooter";
 import {Result} from "../lib/PollProvider";
-import UserNameInput from "./poll/UserNameInput";
 import {ListenerReference} from "../lib/Database";
 import {Restaurant} from "../lib/restaurant";
 
@@ -33,8 +32,10 @@ export default class PollCard extends Component<Props, State> {
 
         Object.keys(result).forEach(userId => {
             const userChoice = result[userId];
+            const restaurantIds = userChoice.restaurantIds || [];
 
-            userChoice.restaurantIds.forEach(restaurantId => {
+
+            restaurantIds.forEach(restaurantId => {
                 if (votesPerRestaurant[restaurantId]) {
                     votesPerRestaurant[restaurantId].push(userId);
                 } else {
@@ -72,12 +73,9 @@ export default class PollCard extends Component<Props, State> {
                             <h2>Hlasovanie</h2>
                         </CardHeader>
                         <CardContent>
-                            <UserNameInput/>
                             <Chart options={options} />
-                        </CardContent>
-                        <CardFooter>
                             <span>Počet hlasujúcich: <strong>{userCount}</strong></span>
-                        </CardFooter>
+                        </CardContent>
                     </Card>
                 </div>
             </div>

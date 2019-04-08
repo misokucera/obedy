@@ -4,6 +4,7 @@ import FilterSearch from "./FilterSearch";
 import {FilterState} from "../../lib/FilterProvider";
 import styles from "./Filter.module.css";
 import FilterCheckbox from "./FilterCheckbox";
+import UserNameInput from "./UserNameInput";
 
 type Props = {
     restaurants: Restaurant[],
@@ -51,10 +52,13 @@ export default class Filter extends Component<Props, {}> {
                         <div className={styles['item-grow']}>
                             <FilterSearch searched={this.handleSearch}/>
                         </div>
-                        <div className={styles['item']}>
+                        <div className={styles['item-grow']}>
                             <FilterCheckbox checked={this.props.filter.showOnlyMainCourse} onChecked={this.handleCheck}>
                                 Iba hlavné jedlá
                             </FilterCheckbox>
+                        </div>
+                        <div className={styles['item']}>
+                            <UserNameInput/>
                         </div>
                     </div>
                 </div>

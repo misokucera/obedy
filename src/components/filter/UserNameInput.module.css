@@ -1,5 +1,4 @@
 .user-name {
-    margin-bottom: 1em;
     border-bottom: 2px dashed #e8e8e8;
     display: flex;
     align-items: center;
@@ -12,6 +11,8 @@
     font-size: 1em;
     font-weight: bolder;
     outline: none;
+    background: transparent;
+    color: #ffffff;
 }
 
 .save-icon {
