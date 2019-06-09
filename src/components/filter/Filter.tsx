@@ -14,22 +14,10 @@ type Props = {
 
 export default class Filter extends Component<Props, {}> {
 
-    normalize(value: string): string {
-        return value.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-    }
-
-    handleSearch = (value: string) => {
-        const regex = new RegExp(this.normalize(value), 'i');
-        const activeRestaurants = this.props.restaurants
-            .filter((restaurant: Restaurant) => {
-                const name = this.normalize(restaurant.name);
-                return name.search(regex) >= 0;
-            })
-            .map((restaurant: Restaurant) => restaurant.id);
-
+    handleSearch = (text: string) => {
         const filter = {
             ...this.props.filter,
-            activeRestaurants: activeRestaurants
+            text: text
         };
 
         this.props.onChange(filter);

@@ -1,5 +1,6 @@
 import React, {Component, FormEvent} from 'react';
 import styles from "./FilterSearch.module.css";
+import FilterProvider from "../../lib/FilterProvider";
 
 const placeholder = 'hľadať';
 
@@ -15,7 +16,7 @@ type State = {
 export default class FilterSearch extends Component<Props, State> {
 
     state = {
-        value: '',
+        value: FilterProvider.load().text || '',
         timer: 0
     };
 

@@ -25,8 +25,21 @@ class App extends Component<{}, State> {
         this.setState({ filter }, () => FilterProvider.save(filter));
     };
 
+    normalize(value: string): string {
+        return value.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    }
+
+    filterRestaurants(restaurants: Restaurant[]): Restaurant[] {
+        const regex = new RegExp(this.normalize(this.state.filter.text), 'i');
+
+        return restaurants.filter((restaurant: Restaurant) => {
+            const name = this.normalize(restaurant.name);
+            return name.search(regex) >= 0;
+        })
+    }
+
     render() {
-        const activeRestaurants = this.state.restaurants.filter(item => this.state.filter.activeRestaurants.indexOf(item.id) >= 0);
+        const activeRestaurants = this.filterRestaurants(this.state.restaurants);
 
         return (
             <Router>

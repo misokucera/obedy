@@ -1,5 +1,5 @@
 export type FilterState = {
-    activeRestaurants: string[],
+    text: string,
     showOnlyMainCourse: boolean
 }
 
@@ -7,7 +7,7 @@ export default class FilterProvider {
 
     private static readonly storageKey: string = 'filter';
     private static readonly defaultFilterState: FilterState = {
-        activeRestaurants: [],
+        text: '',
         showOnlyMainCourse: false
     };
 
@@ -15,8 +15,8 @@ export default class FilterProvider {
         const filter = JSON.parse(localStorage.getItem(this.storageKey) || '{}');
 
         return  {
-            activeRestaurants: filter.activeRestaurants || this.defaultFilterState.activeRestaurants,
-            showOnlyMainCourse: filter.showOnlyMainCourse
+            text: filter.text || '',
+            showOnlyMainCourse: filter.showOnlyMainCourse || false
         };
     }
 
