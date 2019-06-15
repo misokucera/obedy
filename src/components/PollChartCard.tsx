@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import styles from "./PollCard.module.css";
+import styles from "./PollChartCard.module.css";
 import Chart, {Option} from "./poll/Chart";
 import Card from "./card/Card";
 import CardContent from "./card/CardContent";
 import CardHeader from "./card/CardHeader";
-import CardFooter from "./card/CardFooter";
 import {Result} from "../lib/PollProvider";
 import {ListenerReference} from "../lib/Database";
 import {Restaurant} from "../lib/restaurant";
@@ -19,7 +18,7 @@ type State = {
     updateTime: number
 }
 
-export default class PollCard extends Component<Props, State> {
+export default class PollChartCard extends Component<Props, State> {
 
     state = {
         pollRef: undefined,

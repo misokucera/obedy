@@ -1,6 +1,7 @@
 .content {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     background: #eeeeee;
     max-width: 80em;
     margin: 0 auto;

@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import RestaurantList from "./RestaurantList";
-import PollCard from "./PollCard";
+import PollChartCard from "./PollChartCard";
 import {Restaurant} from "../lib/restaurant";
 import {FilterState} from "../lib/FilterProvider";
 import styles from "./VotingPage.module.css";
 import PollProvider, {Result} from "../lib/PollProvider";
 import {ListenerReference} from "../lib/Database";
 import ActiveUser from "../lib/ActiveUser";
+import PollStartCard from "./PollStartCard";
 
 type Props = {
     restaurants: Restaurant[],
@@ -77,11 +78,14 @@ export default class VotingPage extends Component<Props, State> {
                 <RestaurantList
                     restaurants={this.props.restaurants}
                     filter={this.props.filter}
-                    selectable={true}
+                    selectable={!!this.props.pollId}
                     selection={this.getActiveUserSelection()}
                     onSelectionChange={this.handleSelectionChange}
                 />
-                <PollCard result={this.state.result}  restaurants={this.props.restaurants}/>
+                {this.props.pollId
+                    ? <PollChartCard result={this.state.result} restaurants={this.props.restaurants}/>
+                    : <PollStartCard />
+                }
             </div>
         );
     }

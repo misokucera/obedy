@@ -49,13 +49,13 @@ class App extends Component<{}, State> {
                         <Route
                             path={`/poll/:id`}
                             render={(props) =>
-                                <VotingPage pollId={props.match.params.id} restaurants={activeRestaurants} filter={this.state.filter}/>
+                                <VotingPage key={props.match.params.id} pollId={props.match.params.id} restaurants={activeRestaurants} filter={this.state.filter}/>
                             }
                         />
                         <Route
                             path={`/`}
                             render={(props) =>
-                                <ListPage restaurants={activeRestaurants} filter={this.state.filter} />
+                                <VotingPage key={props.match.params.id} pollId={props.match.params.id} restaurants={activeRestaurants} filter={this.state.filter}/>
                             }
                         />
                     </Switch>
