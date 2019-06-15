@@ -4,6 +4,7 @@ import CardContent from "./card/CardContent";
 import Card from "./card/Card";
 import uuid from "uuid";
 import {Link} from "react-router-dom";
+import Button from "./ui/Button";
 
 class PollStartCard extends Component {
     render() {
@@ -13,10 +14,12 @@ class PollStartCard extends Component {
         return (
             <Card>
                 <CardHeader>
-                    Hlasovanie
+                    <h2>Hlasovanie</h2>
                 </CardHeader>
                 <CardContent>
-                    <Link to={linkToPoll}>Spustiť nové hlasovanie</Link>
+                    <Link to={linkToPoll}>
+                        <Button>Spustiť nové hlasovanie</Button>
+                    </Link>
                 </CardContent>
             </Card>
         );

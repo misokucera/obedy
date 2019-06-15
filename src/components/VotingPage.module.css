@@ -7,6 +7,19 @@
     margin: 0 auto;
 }
 
+.main {
+    margin: 1em;
+    flex: 0 1 50em;
+}
+
+.sidebar {
+    flex: 1 0 30em;
+    position: sticky;
+    top: 1em;
+    margin: 1em;
+    margin-left: 0;
+}
+
 @media screen and (min-width: 1200px) {
     .content {
         flex-wrap: nowrap;

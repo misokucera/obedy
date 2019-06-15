@@ -75,17 +75,21 @@ export default class VotingPage extends Component<Props, State> {
     render() {
         return (
             <div className={styles['content']}>
-                <RestaurantList
-                    restaurants={this.props.restaurants}
-                    filter={this.props.filter}
-                    selectable={!!this.props.pollId}
-                    selection={this.getActiveUserSelection()}
-                    onSelectionChange={this.handleSelectionChange}
-                />
-                {this.props.pollId
-                    ? <PollChartCard result={this.state.result} restaurants={this.props.restaurants}/>
-                    : <PollStartCard />
-                }
+                <div className={styles['main']}>
+                    <RestaurantList
+                        restaurants={this.props.restaurants}
+                        filter={this.props.filter}
+                        selectable={!!this.props.pollId}
+                        selection={this.getActiveUserSelection()}
+                        onSelectionChange={this.handleSelectionChange}
+                    />
+                </div>
+                <div className={styles['sidebar']}>
+                    {this.props.pollId
+                        ? <PollChartCard result={this.state.result} restaurants={this.props.restaurants}/>
+                        : <PollStartCard />
+                    }
+                </div>
             </div>
         );
     }

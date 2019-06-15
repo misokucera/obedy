@@ -66,17 +66,15 @@ export default class PollChartCard extends Component<Props, State> {
 
         return (
             <div className={styles['poll']}>
-                <div className={styles['sticky']}>
-                    <Card>
-                        <CardHeader>
-                            <h2>Hlasovanie</h2>
-                        </CardHeader>
-                        <CardContent>
-                            <Chart options={options} />
-                            <span>Počet hlasujúcich: <strong>{userCount}</strong></span>
-                        </CardContent>
-                    </Card>
-                </div>
+                <Card>
+                    <CardHeader>
+                        <h2>Hlasovanie</h2>
+                    </CardHeader>
+                    <CardContent>
+                        <Chart options={options} />
+                        <span>Počet hlasujúcich: <strong>{userCount}</strong></span>
+                    </CardContent>
+                </Card>
             </div>
         );
     }

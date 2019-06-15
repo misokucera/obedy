@@ -1,0 +1,16 @@
+.button {
+    border-radius: 0.2em;
+    padding: 0.5em 0.7em;
+    display: block;
+    text-decoration: none;
+    border: none;
+    background: #a5a5a5;
+    color: white;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.button:hover {
+    opacity: 0.8;
+}

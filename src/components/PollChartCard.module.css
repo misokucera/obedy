@@ -9,8 +9,3 @@
         order: initial;
     }
 }
-
-.sticky {
-    position: sticky;
-    top: 1em;
-}
