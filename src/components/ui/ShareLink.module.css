@@ -1,0 +1,23 @@
+.share {
+    color: #666666;
+    border-radius: 0.2em;
+    border: 3px solid #666666;
+    display: flex;
+    cursor: pointer;
+}
+
+.share > input {
+    padding: 0.5em;
+    border: none;
+    flex: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    appearance: none;
+    outline: none;
+}
+
+.icon {
+    background-color: #666666;
+    color: #ffffff;
+    padding: 0.5em;
+}

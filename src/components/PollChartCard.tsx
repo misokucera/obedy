@@ -7,6 +7,7 @@ import CardHeader from "./card/CardHeader";
 import {Result} from "../lib/PollProvider";
 import {ListenerReference} from "../lib/Database";
 import {Restaurant} from "../lib/restaurant";
+import ShareLink from "./ui/ShareLink";
 
 type Props = {
     result: Result,
@@ -71,6 +72,7 @@ export default class PollChartCard extends Component<Props, State> {
                         <h2>Hlasovanie</h2>
                     </CardHeader>
                     <CardContent>
+                        <ShareLink/>
                         <Chart options={options} />
                         <span>Počet hlasujúcich: <strong>{userCount}</strong></span>
                     </CardContent>
