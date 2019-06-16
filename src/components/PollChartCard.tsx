@@ -8,6 +8,7 @@ import {Result} from "../lib/PollProvider";
 import {ListenerReference} from "../lib/Database";
 import {Restaurant} from "../lib/restaurant";
 import ShareLink from "./ui/ShareLink";
+import CardFooter from "./card/CardFooter";
 
 type Props = {
     result: Result,
@@ -68,14 +69,14 @@ export default class PollChartCard extends Component<Props, State> {
         return (
             <div className={styles['poll']}>
                 <Card>
-                    <CardHeader>
-                        <h2>Hlasovanie</h2>
-                    </CardHeader>
                     <CardContent>
                         <ShareLink/>
+                        <h2>Hlasovanie</h2>
                         <Chart options={options} />
-                        <span>Počet hlasujúcich: <strong>{userCount}</strong></span>
                     </CardContent>
+                    <CardFooter>
+                        <span>Počet hlasujúcich: <strong>{userCount}</strong></span>
+                    </CardFooter>
                 </Card>
             </div>
         );

@@ -1,12 +1,13 @@
 .share {
-    color: #666666;
     border-radius: 0.2em;
-    border: 3px solid #666666;
+    border: 3px solid #a5a5a5;
     display: flex;
     cursor: pointer;
+    transition: border-color 0.2s;
 }
 
 .share > input {
+    color: #a5a5a5;
     padding: 0.5em;
     border: none;
     flex: 1;
@@ -14,10 +15,24 @@
     text-overflow: ellipsis;
     appearance: none;
     outline: none;
+    transition: color 0.2s;
 }
 
 .icon {
-    background-color: #666666;
+    background-color: #a5a5a5;
     color: #ffffff;
     padding: 0.5em;
+    transition: background-color 0.2s;
+}
+
+.share:hover {
+    border-color: #666666;
+}
+
+.share:hover > input {
+    color: #666666;
+}
+
+.share:hover .icon {
+    background: #666666;
 }

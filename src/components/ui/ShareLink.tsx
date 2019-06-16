@@ -19,7 +19,7 @@ class ShareLink extends Component {
             <div className={styles['share']} onFocus={this.copyToClipboard} data-tip="Skopírované!" data-event="click focus">
                 <input type="text" value={location.href} ref={content => this.content = content} />
                 <i className={styles['icon']}><MdShare/></i>
-                <ReactTooltip place="top" effect="solid" type="dark" globalEventOff="click" />
+                <ReactTooltip place="bottom" effect="solid" type="dark" globalEventOff="click" />
             </div>
         );
     }
