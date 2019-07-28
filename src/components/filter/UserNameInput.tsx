@@ -2,6 +2,7 @@ import React, {Component, FormEvent} from 'react';
 import ActiveUser from "../../lib/ActiveUser";
 import styles from "./UserNameInput.module.css";
 import {MdCheck} from "react-icons/md";
+import {MdAccountCircle} from "react-icons/md/";
 
 const placeholder = 'meno';
 
@@ -66,6 +67,9 @@ export default class UserNameInput extends Component<Props, State> {
                         <MdCheck/>
                     </span>
                 }
+                <span className={styles['user-icon']}>
+                    <MdAccountCircle />
+                </span>
             </div>
         );
     }

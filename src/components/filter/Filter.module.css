@@ -20,7 +20,6 @@
 .item-grow {
     flex-grow: 1;
     margin-left: 1em;
-    max-width: 30em;
 }
 
 .item {

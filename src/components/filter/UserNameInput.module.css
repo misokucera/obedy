@@ -1,18 +1,36 @@
 .user-name {
-    border-bottom: 2px dashed #e8e8e8;
     display: flex;
     align-items: center;
+    background-color: #ffffff;
+    border-radius: 0.2em;
+    width: 200px;
+    justify-content: center;
+    transition: border-radius 0.5s 0.25s, background-color 0.5s 0.25s, width 0.5s, height 0.5s;
 }
 
 .user-name input {
     width: 100%;
-    padding: 0.5em;
+    padding: 1.2em;
     border: none;
     font-size: 1em;
     font-weight: bolder;
     outline: none;
     background: transparent;
-    color: #ffffff;
+}
+
+.user-name input:focus {
+    outline: none;
+}
+
+.user-name input:placeholder-shown {
+    font-weight: normal;
+}
+
+.user-icon {
+    color: #666666;
+    font-size: 2em;
+    margin-right: 0.5em;
+    transition: color 0.2s, font-size 0.2s, margin-right 0.2s;
 }
 
 .save-icon {
@@ -40,4 +58,20 @@
     100% {
         opacity: 0;
     }
+}
+
+.user-name.collapsed {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+}
+
+.user-name.collapsed input {
+    display: none;
+}
+
+.user-name.collapsed .user-icon {
+    color: #ffffff;
+    margin-right: 0;
 }
