@@ -5,6 +5,7 @@ import {FilterState} from "../../lib/FilterProvider";
 import styles from "./Filter.module.css";
 import FilterCheckbox from "./FilterCheckbox";
 import UserNameInput from "./UserNameInput";
+import Settings from "./Settings";
 
 type Props = {
     restaurants: Restaurant[],
@@ -46,7 +47,7 @@ export default class Filter extends Component<Props, {}> {
                             </FilterCheckbox>
                         </div>
                         <div className={styles['item']}>
-                            <UserNameInput/>
+                            <Settings/>
                         </div>
                     </div>
                 </div>
