@@ -7,7 +7,6 @@ import restaurants from "./restaurants.json"
 import Filter from "./components/filter/Filter";
 import {Switch} from "react-router";
 import VotingPage from "./components/VotingPage";
-import ListPage from "./components/ListPage";
 
 type State = {
     restaurants: Restaurant[],
